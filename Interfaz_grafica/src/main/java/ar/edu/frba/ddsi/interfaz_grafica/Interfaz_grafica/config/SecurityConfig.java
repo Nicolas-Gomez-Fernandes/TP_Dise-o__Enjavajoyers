@@ -28,8 +28,8 @@ public class SecurityConfig {
                 "/hechos/**",
                 "/usuarios/register", "/usuarios/crear",
                 "/colecciones").permitAll()
-            // Ejemplo: Acceso a alumnos: ADMIN y DOCENTE
-            //.requestMatchers("/alumnos/**").hasAnyRole("ADMIN", "DOCENTE")
+            // Rutas de administración solo para ADMIN
+            .requestMatchers("/admin/**").hasRole("ADMIN")
             // Lo demás requiere autenticación
             .anyRequest().authenticated()
         )

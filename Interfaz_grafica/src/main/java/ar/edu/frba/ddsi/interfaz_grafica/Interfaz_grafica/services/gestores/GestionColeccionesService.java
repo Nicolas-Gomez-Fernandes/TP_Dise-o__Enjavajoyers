@@ -1,8 +1,8 @@
 package ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.gestores;
 
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.PageColeccionResponseDTO;
-import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.coleccion.ColeccionDTO;
-import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.coleccion.PageColeccionDTO;
+import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.ColeccionDTO;
+import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.PageColeccionDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.internal.WebApiCallerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +55,12 @@ public class GestionColeccionesService {
   public PageColeccionDTO obtenerColeccionesPaginado(Integer page, Integer size, String sortBy, String sortDir) {
     String url = String.format(coleccionesAgregadorServiceUrl + "?page=%d&size=%d&sortBy=%s&sortDir=%s", page, size, sortBy, sortDir);
     PageColeccionDTO response = webApiCallerService.getNoAuth( url, PageColeccionDTO.class);
+    return response;
+  }
+
+  public ColeccionDTO obtenerColeccionPorId(Long id) {
+    String url = coleccionesAgregadorServiceUrl + "/" + id;
+    ColeccionDTO response = webApiCallerService.getNoAuth(url, ColeccionDTO.class);
     return response;
   }
 }

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}">Formulario de Colección</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+<div th:fragment="contenido">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/admin/colecciones">
+                <i class="bi bi-arrow-left"></i> Volver a Colecciones
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">
+                            <i class="bi bi-collection"></i>
+                            <span th:text="${esNueva ? 'Nueva Colección' : 'Editar Colección'}"></span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Mensajes de alerta -->
+                        <div th:if="${mensaje}" class="alert alert-dismissible fade show" 
+                             th:classappend="${'alert-' + tipoMensaje}" role="alert">
+                            <span th:text="${mensaje}"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+
+                        <form th:action="${esNueva ? '/admin/colecciones/crear' : '/admin/colecciones/' + coleccion.id + '/actualizar'}" 
+                              method="post" th:object="${coleccion}">
+                            
+                            <!-- Título -->
+                            <div class="mb-3">
+                                <label for="titulo" class="form-label">
+                                    <i class="bi bi-card-heading"></i> Título *
+                                </label>
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="titulo" 
+                                       th:field="*{titulo}"
+                                       placeholder="Ej: Hechos Históricos de Buenos Aires"
+                                       required>
+                                <div class="form-text">Ingrese un título descriptivo para la colección</div>
+                            </div>
+
+                            <!-- Descripción -->
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">
+                                    <i class="bi bi-text-paragraph"></i> Descripción *
+                                </label>
+                                <textarea class="form-control" 
+                                          id="descripcion" 
+                                          th:field="*{descripcion}"
+                                          rows="4"
+                                          placeholder="Describe el contenido y propósito de esta colección..."
+                                          required></textarea>
+                                <div class="form-text">Proporcione una descripción detallada de la colección</div>
+                            </div>
+
+                            <!-- URL de imagen (opcional) -->
+                            <div class="mb-3">
+                                <label for="imagen_url" class="form-label">
+                                    <i class="bi bi-image"></i> URL de Imagen (opcional)
+                                </label>
+                                <input type="url" 
+                                       class="form-control" 
+                                       id="imagen_url" 
+                                       th:field="*{imagen_url}"
+                                       placeholder="https://ejemplo.com/imagen.jpg">
+                                <div class="form-text">URL de una imagen representativa de la colección</div>
+                            </div>
+
+                            <!-- Botones -->
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                <a href="/admin/colecciones" class="btn btn-secondary">
+                                    <i class="bi bi-x-circle"></i> Cancelar
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span th:text="${esNueva ? 'Crear Colección' : 'Guardar Cambios'}"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="alert alert-info mt-3" th:if="${!esNueva}">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Nota:</strong> Los cambios se guardarán inmediatamente y serán visibles para todos los usuarios.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
