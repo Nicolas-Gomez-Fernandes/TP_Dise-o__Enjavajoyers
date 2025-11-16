@@ -1,172 +1,186 @@
 <!DOCTYPE html>
-<html th:replace="~{layout/base :: html}">
-<head>
-    <meta charset="utf-8" />
-    <title>Solicitud de Eliminación de Hecho</title>
-    <link rel="stylesheet" href "style.css"/>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="~{layout/base :: head(~{::title})}">
+    <title th:text="${titulo}">Solicitud de Eliminación</title>
 </head>
+
 <body>
-    <main>
-        <div class="card" role="region" aria-label="Solicitud Eliminación de Hecho">
-            <h2>Solicitud de Eliminación de Hecho</h2>
+<!-- Header común -->
+<header th:replace="~{layout/fragments/header2 :: header2}"></header>
 
-            <div id="alertBox" aria-live="polite"></div>
+<main class="container mt-5">
+    <!-- Botón de regreso -->
+    <div class="mb-3">
+        <a th:href="@{/hechos/detalle/{id}(id=${hecho.id})}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Volver al Detalle
+        </a>
+    </div>
 
-            <!-- Formulario: el campo hechoId será oculto y rellenado desde la query string -->
-            <form id="deleteForm" class="form-group" novalidate>
-                <div class="form-group">
-                    <label for="hechoIdDisplay">Hecho seleccionado</label>
-                    <!-- campo solo informativo para que el usuario vea qué hecho se va a eliminar -->
-                    <div id="hechoHint" class="hint">Este es el identificador del hecho que será enviado con la solicitud</div>
+    <div class="card shadow-sm">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0"><i class="bi bi-exclamation-triangle-fill"></i> Reportar Hecho</h2>
+        </div>
+        <div class="card-body">
+            <!-- Información del hecho -->
+            <div class="alert alert-info" th:if="${hecho != null}">
+                <h5 class="alert-heading">Hecho a reportar:</h5>
+                <p class="mb-1"><strong>Título:</strong> <span th:text="${hecho.titulo}">Título</span></p>
+                <p class="mb-0"><strong>ID:</strong> <span th:text="${hecho.id}">ID</span></p>
+            </div>
 
-                    <!-- campo oculto que se enviará realmente -->
-                    <input type="hidden" id="hechoId" name="hechoId" value="" />
+            <div id="alertBox" class="mb-3"></div>
+
+            <!-- Formulario -->
+            <form id="deleteForm" novalidate>
+                <input type="hidden" id="hechoId" name="hechoId" th:value="${hecho.id}" />
+
+                <div class="mb-4">
+                    <label for="fundamento" class="form-label fw-bold">Fundamento de la Eliminación *</label>
+                    <textarea id="fundamento" 
+                              name="fundamento" 
+                              class="form-control" 
+                              rows="8"
+                              placeholder="Describe detalladamente el motivo por el cual este hecho debe ser eliminado. Incluye toda la información relevante que respalde tu solicitud." 
+                              required></textarea>
+                    <div class="form-text">
+                        <span id="charCount">0</span> / 500 caracteres mínimos
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="fundamento">Fundamento de la Eliminación</label>
-                    <textarea id="fundamento" name="fundamento" placeholder="Describe el motivo de- la solicitud" required></textarea>
-                    <div class="hint">Mínimo 500 caracteres.</div>
-                </div>
-
-                <div class="actions">
-                    <button type="button" id="resetBtn" class="btn btn-secondary">Limpiar</button>
-                    <button type="submit" id="submitBtn" class="btn btn-primary">Enviar Solicitud</button>
+                <div class="d-flex gap-2 justify-content-end">
+                    <button type="button" id="resetBtn" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Limpiar
+                    </button>
+                    <button type="submit" id="submitBtn" class="btn btn-danger">
+                        <i class="bi bi-send-fill"></i> Enviar Solicitud
+                    </button>
                 </div>
             </form>
         </div>
-    </main>
+    </div>
+</main>
 
-    <footer style="padding:1rem;text-align:center;background:#fff;">
-        <small style="color:#666;">Sistema de Gestión de Hechos</small>
-    </footer>
 
-    <script>
-        /* Mensajería visual */
-        function showMessage(message, type) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message message-${type}`;
-            messageDiv.textContent = message;
-            messageDiv.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 0.9rem 1.2rem;
-                border-radius: 6px;
-                color: white;
-                font-weight: 600;
-                z-index: 1001;
-                animation: slideIn 0.25s ease;
-            `;
-            if (type === 'success') {
-                messageDiv.style.backgroundColor = '#2a9d8f';
-            } else if (type === 'error') {
-                messageDiv.style.backgroundColor = '#e74c3c';
+<footer th:replace="~{layout/fragments/footer :: footer}"></footer>
+
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteForm = document.getElementById('deleteForm');
+        const alertBox = document.getElementById('alertBox');
+        const resetBtn = document.getElementById('resetBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const hechoIdInput = document.getElementById('hechoId');
+        const fundamentoTextarea = document.getElementById('fundamento');
+        const charCount = document.getElementById('charCount');
+
+        // Contador de caracteres
+        fundamentoTextarea.addEventListener('input', function() {
+            const length = this.value.length;
+            charCount.textContent = length;
+            
+            if (length >= 500) {
+                charCount.classList.remove('text-danger');
+                charCount.classList.add('text-success');
             } else {
-                messageDiv.style.backgroundColor = '#1e6fb8';
+                charCount.classList.remove('text-success');
+                charCount.classList.add('text-danger');
             }
-            document.body.appendChild(messageDiv);
+        });
 
-            setTimeout(() => {
-                messageDiv.style.animation = 'slideOut 0.25s ease';
-                setTimeout(() => { document.body.removeChild(messageDiv); }, 250);
-            }, 3000);
-        }
+        // Limpiar formulario
+        resetBtn.addEventListener('click', function () {
+            fundamentoTextarea.value = '';
+            charCount.textContent = '0';
+            charCount.classList.remove('text-success', 'text-danger');
+            alertBox.innerHTML = '';
+        });
 
-        /* Lee query string y devuelve valor del parámetro pedido */
-        function getQueryParam(name) {
-            const params = new URLSearchParams(window.location.search);
-            return params.get(name);
-        }
+        // Enviar formulario
+        deleteForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            alertBox.innerHTML = '';
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const deleteForm = document.getElementById('deleteForm');
-            const alertBox = document.getElementById('alertBox');
-            const resetBtn = document.getElementById('resetBtn');
-            const submitBtn = document.getElementById('submitBtn');
-            const hechoIdHidden = document.getElementById('hechoId');
-            const hechoIdDisplay = document.getElementById('hechoIdDisplay');
+            const hechoId = hechoIdInput.value.trim();
+            const fundamento = fundamentoTextarea.value.trim();
 
-            // Opción 1: obtener id desde la query string ?factId=123 o ?hechoId=123
-            const idFromQuery = getQueryParam('factId') || getQueryParam('hechoId');
-
-            if (!idFromQuery) {
-                // No hay id en la URL: mostrar error y deshabilitar envío
-                alertBox.innerHTML = '<div class="alert alert-error">No se recibió el identificador del hecho en la URL. Vuelve a seleccionar el hecho desde la lista.</div>';
-                showMessage('Falta identificador del hecho', 'error');
-                hechoIdHidden.value = '';
-                hechoIdDisplay.value = '';
-                submitBtn.disabled = true;
+            // Validaciones
+            if (!hechoId) {
+                alertBox.innerHTML = '<div class="alert alert-danger"><i class="bi bi-x-circle-fill"></i> El ID del hecho no está disponible</div>';
                 return;
             }
 
-            // Rellenar campos (campo oculto y display de sólo lectura)
-            hechoIdHidden.value = idFromQuery;
-            hechoIdDisplay.value = idFromQuery;
+            if (fundamento.length < 500) {
+                alertBox.innerHTML = '<div class="alert alert-danger"><i class="bi bi-x-circle-fill"></i> El fundamento debe tener al menos 500 caracteres</div>';
+                return;
+            }
 
-            resetBtn.addEventListener('click', function () {
-                // limpiar sólo el fundamento; no limpiar el id que viene por query
-                document.getElementById('fundamento').value = '';
-                alertBox.innerHTML = '';
-            });
+            // Deshabilitar botón mientras se envía
+            submitBtn.disabled = true;
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Enviando...';
 
-            deleteForm.addEventListener('submit', async function (e) {
-                e.preventDefault();
-                alertBox.innerHTML = '';
+            const payload = { 
+                id_hecho: parseInt(hechoId), 
+                fundamento: fundamento 
+            };
 
-                const hechoId = hechoIdHidden.value.trim();
-                const fundamento = document.getElementById('fundamento').value.trim();
+            try {
+                const response = await fetch('/hechos/reportar', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="_csrf"]')?.getAttribute('content') || ''
+                    },
+                    body: JSON.stringify(payload)
+                });
 
-                if (!hechoId) {
-                    alertBox.innerHTML = '<div class="alert alert-error">El ID del hecho no está disponible</div>';
-                    showMessage('Error: ID no disponible', 'error');
-                    return;
-                }
-                if (fundamento.length < 500) {
-                    alertBox.innerHTML = '<div class="alert alert-error">El fundamento debe tener al menos 500 caracteres</div>';
-                    showMessage('Error: fundamento demasiado corto', 'error');
-                    return;
-                }
+                if (response.ok) {
+                    const data = await response.json();
+                    alertBox.innerHTML = `
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <i class="bi bi-check-circle-fill"></i> ${data.message || 'Solicitud enviada correctamente'}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>`;
+                    
+                    // Limpiar fundamento
+                    fundamentoTextarea.value = '';
+                    charCount.textContent = '0';
+                    charCount.classList.remove('text-success', 'text-danger');
 
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Enviando...';
-                showMessage('Enviando solicitud de eliminación', 'info');
-
-                const payload = { id: hechoId, fundamento: fundamento };
-
-                try {
-                    const response = await fetch('/hechos/eliminar', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (response.ok) {
-                        alertBox.innerHTML = '<div class="alert alert-success">Solicitud enviada correctamente</div>';
-                        showMessage('Solicitud enviada', 'success');
-                        // sólo limpiar el fundamento; mantener el id visible
-                        document.getElementById('fundamento').value = '';
-                    } else {
-                        let text = '';
-                        try {
-                            const json = await response.json();
-                            text = json.message || JSON.stringify(json);
-                        } catch (err) {
-                            text = await response.text().catch(() => '');
-                        }
-                        alertBox.innerHTML = `<div class="alert alert-error">Error al enviar la solicitud${text ? ': ' + text : ''}</div>`;
-                        showMessage('Error al enviar', 'error');
+                    // Redirigir después de 2 segundos
+                    setTimeout(() => {
+                        window.location.href = '/hechos/detalle/' + hechoId;
+                    }, 2000);
+                } else {
+                    let errorMessage = 'Error al enviar la solicitud';
+                    try {
+                        const errorData = await response.json();
+                        errorMessage = errorData.message || errorMessage;
+                    } catch (err) {
+                        errorMessage = await response.text().catch(() => errorMessage);
                     }
-                } catch (error) {
-                    console.error('Error en la request:', error);
-                    alertBox.innerHTML = '<div class="alert alert-error">Error de conexión con el servidor</div>';
-                    showMessage('Error de conexión', 'error');
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Enviar Solicitud';
+                    alertBox.innerHTML = `
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <i class="bi bi-x-circle-fill"></i> ${errorMessage}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>`;
                 }
-            });
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+                alertBox.innerHTML = `
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <i class="bi bi-x-circle-fill"></i> Error de conexión con el servidor
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>`;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>
