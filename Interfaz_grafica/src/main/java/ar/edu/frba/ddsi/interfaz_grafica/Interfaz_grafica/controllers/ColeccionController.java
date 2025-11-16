@@ -1,10 +1,7 @@
 package ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.controllers;
 
-import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.PageColeccionResponseDTO;
-import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.coleccion.ColeccionDTO;
-import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.coleccion.PageColeccionDTO;
+import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.PageColeccionDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.ColeccionService;
-import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -5,7 +5,6 @@ import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.Colec
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.PageColeccionDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.gestores.GestionColeccionesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services;
 
-import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.HechoDTO;
+import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.hechos.HechoDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.exceptions.DuplicateHechoException;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.exceptions.ValidationException;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.gestores.GestionHechosService;

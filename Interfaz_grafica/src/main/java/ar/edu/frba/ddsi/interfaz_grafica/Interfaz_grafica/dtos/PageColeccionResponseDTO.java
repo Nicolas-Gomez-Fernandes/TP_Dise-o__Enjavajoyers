@@ -1,6 +1,6 @@
 package ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos;
 
-import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.coleccion.ColeccionDTO;
+import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.ColeccionDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import java.util.List;

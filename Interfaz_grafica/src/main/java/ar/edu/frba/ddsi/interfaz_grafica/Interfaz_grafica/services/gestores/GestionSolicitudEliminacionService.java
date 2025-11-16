@@ -2,7 +2,6 @@ package ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.gestores;
 
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.solicitudEliminacion.SolicitudEliminacionDTO;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -26,7 +25,8 @@ public class GestionSolicitudEliminacionService {
         return webClient.get()
                 .uri("/agregador/solicitudes-eliminacion")
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<SolicitudEliminacionDTO>>() {})
+                .bodyToFlux(SolicitudEliminacionDTO.class)
+                .collectList()
                 .block();
     }
 

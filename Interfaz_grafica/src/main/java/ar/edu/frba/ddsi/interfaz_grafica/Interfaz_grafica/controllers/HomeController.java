@@ -1,6 +1,6 @@
 package ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.controllers;
 
-import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.coleccion.ColeccionDTO;
+import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.ColeccionDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.ColeccionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
