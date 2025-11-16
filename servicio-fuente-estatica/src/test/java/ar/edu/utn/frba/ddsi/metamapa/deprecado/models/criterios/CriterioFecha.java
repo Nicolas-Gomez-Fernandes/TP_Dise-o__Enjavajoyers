@@ -19,8 +19,8 @@ public class CriterioFecha implements CriterioPertenencia {
 
     @Override
     public List<Hecho> aplicarCriterio(List<Hecho> hechos) {
-        return hechos.stream().filter(h->h.getFecha().isAfter(desde)
-                                            && h.getFecha().isBefore(hasta))
+        return hechos.stream().filter(h->h.getFecha().toLocalDate().isAfter(desde)
+                                            && h.getFecha().toLocalDate().isBefore(hasta))
                                             .collect(Collectors.toList());
     }
 }
