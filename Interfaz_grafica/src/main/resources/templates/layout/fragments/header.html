@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+<header th:fragment="header" class="header">
+    <div class="header-title" th:href="@{/}" ><strong>MetaMapa</strong></div>
+    <nav>
+        <a th:href="@{../base.html}" href="#">Inicio</a>
+        <a th:href="@{/hechos}" href="hechos.html">Visualizar Hechos</a>
+        <a th:href="@{/upload}" href="#">Subir Información</a>
+        <a th:href="@{/login}" href="#" class="btn-small-iniciar_sesion" id="loginBtn">Iniciar Sesión</a>
+    </nav>
+</header>
+
+</body>
+</html>

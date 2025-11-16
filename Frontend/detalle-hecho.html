@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMapa - Detalle del Hecho</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="visualizador/landyng/styles.css">
+    <link rel="stylesheet" href="hechos.css">
+    <link rel="stylesheet" href="detalle-hecho.css">
+</head>
+<body>
+    <header>
+        <div><strong>MetaMapa</strong></div>
+        <nav>
+            <a href="visualizador/landyng/landing.html">Inicio</a>
+            <a href="hechos.html">Visualizar Hechos</a>
+            <a href="#">Subir Información</a>
+            <a href="#" class="btn-small" id="loginBtn">Iniciar Sesión</a>
+        </nav>
+    </header>
+
+    <main class="detalle-container">
+        <!-- Botón de regreso -->
+        <div class="back-section">
+            <a href="hechos.html" class="back-btn">
+                ← Volver a Hechos
+            </a>
+        </div>
+
+        <!-- Contenido principal del hecho -->
+        <article class="hecho-detalle" id="hechoDetalle">
+            <!-- La información se cargará dinámicamente aquí -->
+            <div class="loading" id="loading">
+                <h3>Cargando información del hecho...</h3>
+            </div>
+        </article>
+    </main>
+
+    <!-- Modal de Inicio de Sesión -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+            </form>
+            <div class="form-footer">
+                <p>¿No tienes cuenta? <a href="#" id="showRegister">Regístrate aquí</a></p>
+                <a href="#" id="forgotPassword">¿Olvidaste tu contraseña?</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Registro -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Crear Cuenta</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regName">Nombre completo</label>
+                    <input type="text" id="regName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Correo electrónico</label>
+                    <input type="email" id="regEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Contraseña</label>
+                    <input type="password" id="regPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirmPassword">Confirmar contraseña</label>
+                    <input type="password" id="regConfirmPassword" name="confirmPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+            </form>
+            <div class="form-footer">
+                <p>¿Ya tienes cuenta? <a href="#" id="showLogin">Inicia sesión aquí</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <strong>MetaMapa</strong>
+            <p>Proyecto de código abierto para mapeo colaborativo.</p>
+        </div>
+        <div>
+            <a href="landingPage.html">Inicio</a><br>
+            <a href="hechos.html">Visualizar hechos</a><br>
+            <a href="#" id="footerLoginBtn">Registro / Inicio sesión</a><br>
+        </div>
+        <div>
+            <a>Seguinos:</a><br>
+            <a href="#">Facebook</a><br>
+            <a href="#">Twitter</a><br>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="detalle-hecho.js"></script>
+</body>
+</html>

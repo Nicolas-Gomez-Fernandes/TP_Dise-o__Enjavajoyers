@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colecciones - MetaMapa</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #004b87;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        section.section {
+            padding: 2rem 1rem;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .card {
+            width: 300px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            background-color: white;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-small {
+            display: inline-block;
+            background-color: #004b87;
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-small:hover {
+            background-color: #006fcf;
+        }
+
+        /* ===== VISTA LISTA ===== */
+        .list-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .list-view .card {
+            display: flex;
+            flex-direction: row;
+            width: 80%;
+            max-width: 900px;
+            height: 180px;
+        }
+
+        .list-view .card img {
+            width: 40%;
+            height: 100%;
+        }
+
+        .list-view .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #004b87;
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Colecciones de MetaMapa</h1>
+</header>
+
+<section class="section text-center">
+    <p>Explorá las colecciones colaborativas del mapa.</p>
+    <div class="mb-4">
+        <button id="btnGrid" class="btn btn-primary me-2">Vista Tarjetas</button>
+        <button id="btnList" class="btn btn-secondary">Vista Lista</button>
+    </div>
+</section>
+
+<section class="section">
+    <div id="coleccionesContainer" class="cards">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Incendios forestales">
+            <div class="card-content">
+                <h3>Incendios forestales 2025</h3>
+                <p>Hechos registrados: 48</p>
+                <a href="#" class="btn-small">Ver colección</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Contaminación de ríos">
+            <div class="card-content">
+                <h3>Contaminación de ríos</h3>
+                <p>Hechos registrados: 32</p>
+                <a href="#" class="btn-small">Ver colección</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1602526217853-8c8e2532d22b" alt="Desapariciones">
+            <div class="card-content">
+                <h3>Desapariciones recientes</h3>
+                <p>Hechos registrados: 15</p>
+                <a href="#" class="btn-small">Ver colección</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2025 MetaMapa — Proyecto de Sistemas de Información
+</footer>
+
+<script>
+    const gridBtn = document.getElementById('btnGrid');
+    const listBtn = document.getElementById('btnList');
+    const container = document.getElementById('coleccionesContainer');
+
+    gridBtn.addEventListener('click', () => {
+        container.classList.remove('list-view');
+    });
+
+    listBtn.addEventListener('click', () => {
+        container.classList.add('list-view');
+    });
+</script>
+
+</body>
+</html>

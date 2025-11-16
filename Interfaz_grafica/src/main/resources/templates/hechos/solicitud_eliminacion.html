@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/base :: html}">
+<head>
+    <meta charset="utf-8" />
+    <title>Solicitud de Eliminación de Hecho</title>
+    <link rel="stylesheet" href "style.css"/>
+</head>
+<body>
+    <main>
+        <div class="card" role="region" aria-label="Solicitud Eliminación de Hecho">
+            <h2>Solicitud de Eliminación de Hecho</h2>
+
+            <div id="alertBox" aria-live="polite"></div>
+
+            <!-- Formulario: el campo hechoId será oculto y rellenado desde la query string -->
+            <form id="deleteForm" class="form-group" novalidate>
+                <div class="form-group">
+                    <label for="hechoIdDisplay">Hecho seleccionado</label>
+                    <!-- campo solo informativo para que el usuario vea qué hecho se va a eliminar -->
+                    <div id="hechoHint" class="hint">Este es el identificador del hecho que será enviado con la solicitud</div>
+
+                    <!-- campo oculto que se enviará realmente -->
+                    <input type="hidden" id="hechoId" name="hechoId" value="" />
+                </div>
+
+                <div class="form-group">
+                    <label for="fundamento">Fundamento de la Eliminación</label>
+                    <textarea id="fundamento" name="fundamento" placeholder="Describe el motivo de- la solicitud" required></textarea>
+                    <div class="hint">Mínimo 500 caracteres.</div>
+                </div>
+
+                <div class="actions">
+                    <button type="button" id="resetBtn" class="btn btn-secondary">Limpiar</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary">Enviar Solicitud</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer style="padding:1rem;text-align:center;background:#fff;">
+        <small style="color:#666;">Sistema de Gestión de Hechos</small>
+    </footer>
+
+    <script>
+        /* Mensajería visual */
+        function showMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${type}`;
+            messageDiv.textContent = message;
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 0.9rem 1.2rem;
+                border-radius: 6px;
+                color: white;
+                font-weight: 600;
+                z-index: 1001;
+                animation: slideIn 0.25s ease;
+            `;
+            if (type === 'success') {
+                messageDiv.style.backgroundColor = '#2a9d8f';
+            } else if (type === 'error') {
+                messageDiv.style.backgroundColor = '#e74c3c';
+            } else {
+                messageDiv.style.backgroundColor = '#1e6fb8';
+            }
+            document.body.appendChild(messageDiv);
+
+            setTimeout(() => {
+                messageDiv.style.animation = 'slideOut 0.25s ease';
+                setTimeout(() => { document.body.removeChild(messageDiv); }, 250);
+            }, 3000);
+        }
+
+        /* Lee query string y devuelve valor del parámetro pedido */
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteForm = document.getElementById('deleteForm');
+            const alertBox = document.getElementById('alertBox');
+            const resetBtn = document.getElementById('resetBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            const hechoIdHidden = document.getElementById('hechoId');
+            const hechoIdDisplay = document.getElementById('hechoIdDisplay');
+
+            // Opción 1: obtener id desde la query string ?factId=123 o ?hechoId=123
+            const idFromQuery = getQueryParam('factId') || getQueryParam('hechoId');
+
+            if (!idFromQuery) {
+                // No hay id en la URL: mostrar error y deshabilitar envío
+                alertBox.innerHTML = '<div class="alert alert-error">No se recibió el identificador del hecho en la URL. Vuelve a seleccionar el hecho desde la lista.</div>';
+                showMessage('Falta identificador del hecho', 'error');
+                hechoIdHidden.value = '';
+                hechoIdDisplay.value = '';
+                submitBtn.disabled = true;
+                return;
+            }
+
+            // Rellenar campos (campo oculto y display de sólo lectura)
+            hechoIdHidden.value = idFromQuery;
+            hechoIdDisplay.value = idFromQuery;
+
+            resetBtn.addEventListener('click', function () {
+                // limpiar sólo el fundamento; no limpiar el id que viene por query
+                document.getElementById('fundamento').value = '';
+                alertBox.innerHTML = '';
+            });
+
+            deleteForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                alertBox.innerHTML = '';
+
+                const hechoId = hechoIdHidden.value.trim();
+                const fundamento = document.getElementById('fundamento').value.trim();
+
+                if (!hechoId) {
+                    alertBox.innerHTML = '<div class="alert alert-error">El ID del hecho no está disponible</div>';
+                    showMessage('Error: ID no disponible', 'error');
+                    return;
+                }
+                if (fundamento.length < 500) {
+                    alertBox.innerHTML = '<div class="alert alert-error">El fundamento debe tener al menos 500 caracteres</div>';
+                    showMessage('Error: fundamento demasiado corto', 'error');
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+                showMessage('Enviando solicitud de eliminación', 'info');
+
+                const payload = { id: hechoId, fundamento: fundamento };
+
+                try {
+                    const response = await fetch('/hechos/eliminar', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        alertBox.innerHTML = '<div class="alert alert-success">Solicitud enviada correctamente</div>';
+                        showMessage('Solicitud enviada', 'success');
+                        // sólo limpiar el fundamento; mantener el id visible
+                        document.getElementById('fundamento').value = '';
+                    } else {
+                        let text = '';
+                        try {
+                            const json = await response.json();
+                            text = json.message || JSON.stringify(json);
+                        } catch (err) {
+                            text = await response.text().catch(() => '');
+                        }
+                        alertBox.innerHTML = `<div class="alert alert-error">Error al enviar la solicitud${text ? ': ' + text : ''}</div>`;
+                        showMessage('Error al enviar', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error en la request:', error);
+                    alertBox.innerHTML = '<div class="alert alert-error">Error de conexión con el servidor</div>';
+                    showMessage('Error de conexión', 'error');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar Solicitud';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

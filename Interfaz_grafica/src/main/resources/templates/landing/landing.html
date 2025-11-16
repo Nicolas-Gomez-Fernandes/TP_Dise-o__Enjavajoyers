@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/base :: html}" lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:fragment="extraCss">
+        <link rel="stylesheet" th:href="@{/css/landing.css}">
+    </th:block>
+</head>
+
+
+<body>
+
+<div th:fragment="contenido">
+
+    <section class="hero">
+        <h1>MetaMapa</h1>
+        <p>Mapeamos en conjunto eventos relevantes para prevenir, visibilizar y actuar.</p>
+        <a href="../../hechos.html" class="btn btn-primary">Visualizar Hechos</a>
+        <a href="#" class="btn btn-secondary">Subir Información</a>
+    </section>
+
+    <!-- Propósito y Objetivos -->
+    <section class="section bg-light">
+        <h2>Propósitos</h2>
+        <p>
+            MetaMapa surge para aprovechar la inteligencia colectiva y transformarla en información confiable, organizada y útil para la sociedad.
+            Su propósito es recopilar, visibilizar y mapear datos aportados por la comunidad (ya sean descripciones, imágenes, audios o videos)
+            para que puedan ser consultados en tiempo y espacio, contribuyendo a la prevención de problemas, la generación de alertas y la búsqueda de soluciones sociales y ambientales.
+        </p>
+
+        <p>Ordenar y etiquetar información de manera geográfica y temporal para facilitar su análisis y consulta</p>
+        <h2>Objetivos</h2>
+        <ul>
+            <li>✔️ Brindar una plataforma de código abierto que pueda ser instalada y gestionada por ONGs, universidades u organismos estatales.</li>
+            <li>✔️ Garantizar la disponibilidad y veracidad de los datos, incluso frente a fallas técnicas o intentos de manipulación, gracias a su diseño descentralizado.</li>
+            <li>✔️ Proteger la identidad y privacidad de las personas usuarias, evitando la recopilación de datos personales de quienes solo consultan información.</li>
+            <li>✔️ Proveer herramientas colaborativas que permitan vincular información redundante y generar consensos comunitarios.</li>
+            <li>✔️ Fomentar la participación ciudadana, permitiendo a individuos y comunidades aportar hechos que visibilicen causas, alerten sobre emergencias o documenten problemáticas sociales.</li>
+        </ul>
+    </section>
+
+    <!-- Colecciones destacadas -->
+    <section class="section">
+        <h2>Colecciones destacadas</h2>
+        <div class="cards">
+
+            <div class="card" th:each="coleccion : ${coleccionesDestacadas}">
+                <img th:if="${tieneImagen} == true" th:src="${coleccion.imagen_url}"
+                     th:alt="${coleccion.nombre}">
+                <img th:if="${tieneImagen} == false" th:src="@{/../static/images/coleccion-no-image.jpg}" alt="Sin imagen">
+                <div class="card-content">
+                    <h3 th:text="${coleccion.titulo}">Titulo colección</h3>
+                    <a th:href="@{'/colecciones/' + ${coleccion.id}}" class="btn-small">Ver colección</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ¿Por qué MetaMapa? -->
+    <section class="section bg-light">
+        <h2>¿Por qué MetaMapa?</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>🔍 Acceso libre</h3>
+                <p>Visualiza sin registrarte</p>
+            </div>
+            <div class="feature">
+                <h3>📍 Ubicación precisa</h3>
+                <p>Cada hecho geolocalizado</p>
+            </div>
+            <div class="feature">
+                <h3>🤝 Colaboración abierta</h3>
+                <p>Aporta anónimamente</p>
+            </div>
+            <div class="feature">
+                <h3>🔒 Privacidad garantizada</h3>
+                <p>Sin rastreo de visitantes</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Tu aporte es clave</h2>
+        <p>Ayuda a construir un mapa más preciso y útil para todos. Subir un hecho es rápido y no requiere que compartas tu identidad.</p>
+        <a href="#" class="btn btn-primary">Registrar hecho</a> |
+        <a href="#" class="btn btn-primary">Conocer más</a>
+    </section>
+
+</div>
+</body>
+</html>

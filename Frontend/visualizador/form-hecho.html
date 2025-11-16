@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Hecho</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h1>Cargar Nuevo Hecho</h1>
+
+<form th:action="@{/hechos}" th:object="${hecho}" method="post" enctype="multipart/form-data">
+
+    <!-- Titulo -->
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" th:field="*{titulo}" required/>
+    <br/>
+
+    <!-- Descripcion -->
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" th:field="*{descripcion}" required></textarea>
+    <br/>
+
+    <!-- Categoria -->
+    <label for="categoria">Categoría:</label>
+    <select id="categoria" th:field="*{categoria}" required>
+        <option value="">-- Seleccionar --</option>
+        <option th:each="c : ${categorias}"
+                th:value="${c.id}"
+                th:text="${c.nombre}">
+        </option>
+    </select>
+    <br/>
+
+    <!-- Ubicacion (Mapa) -->
+    <label for="ubicacion">Ubicación:</label>
+    <input type="text" id="ubicacion" th:field="*{ubicacion}" placeholder="Seleccione en el mapa"/>
+    <div id="map" style="width: 500px; height: 300px; border: 1px solid #ccc;"></div>
+    <br/>
+
+    <!-- Archivos multimedia -->
+    <label for="archivos">Archivos multimedia:</label>
+    <input type="file" id="archivos" th:field="*{archivos}" multiple/>
+    <br/>
+
+    <!-- Fecha de acontecimiento -->
+    <label for="fecha">Fecha del Acontecimiento:</label>
+    <input type="date" id="fecha" th:field="*{fechaAcontecimiento}" required/>
+    <br/>
+
+    <!-- Etiquetas -->
+    <label for="etiquetas">Etiquetas:</label>
+    <input type="text" id="etiquetas" th:field="*{etiquetas}" placeholder="Ej: política, seguridad"/>
+    <br/>
+
+    <button type="submit">Guardar Hecho</button>
+</form>
+
+<!-- JS del mapa (ejemplo con Leaflet) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([-34.61, -58.38], 12); // CABA por defecto
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19
+    }).addTo(map);
+
+    var marker;
+    map.on('click', function(e) {
+        if (marker) { map.removeLayer(marker); }
+        marker = L.marker(e.latlng).addTo(map);
+        document.getElementById("ubicacion").value = e.latlng.lat + "," + e.latlng.lng;
+    });
+</script>
+
+</body>
+</html>

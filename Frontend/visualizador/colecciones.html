@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colecciones disponibles - MetaMapa</title>
+    <link rel="stylesheet" href="colecciones.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="logo">
+        <img src="../images/logo-2.png" alt="Logo MetaMapa">
+        <p><span class="meta-color">Meta</span><span class="mapa-color">Mapa</span></p>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Mapa</a></li>
+            <li><a href="#">Colecciones</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Contenido principal -->
+<main>
+    <h1>Colecciones disponibles</h1>
+
+    <!-- Buscador -->
+    <div class="buscador">
+        <label>
+            <input type="text" placeholder="Buscar colección...">
+        </label>
+    </div>
+
+    <!-- Listado de colecciones -->
+    <section class="colecciones">
+        <article class="coleccion">
+            <h2>Incendios 2025</h2>
+            <div class="card-img">
+                <img src="../images/imagen1.jpg" alt="Imagen del hecho">
+            </div>
+            <p class="descripcion">Registro de incendios forestales en distintas provincias.</p>
+            <p class="hechos">Hechos: 120</p>
+            <div class="acciones">
+                <button>Ver colección</button>
+                <button class="admin">Editar</button>
+                <button class="admin">Eliminar</button>
+            </div>
+        </article>
+
+        <article class="coleccion">
+            <h2>Inundaciones AR</h2>
+            <p class="descripcion">Relevamiento de inundaciones urbanas y rurales.</p>
+            <p class="hechos">Hechos: 85</p>
+            <div class="acciones">
+                <button>Ver colección</button>
+                <button class="admin">Editar</button>
+                <button class="admin">Eliminar</button>
+            </div>
+        </article>
+    </section>
+
+    <!-- Botón solo para admin -->
+    <div class="nueva-coleccion">
+        <button class="admin">+ Nueva colección</button>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-links">
+            <a href="#">Sobre MetaMapa</a>
+            <a href="#">Privacidad</a>
+            <a href="#">Términos</a>
+            <a href="#">Contacto</a>
+        </div>
+        <div class="footer-credits">
+            <p>&copy; 2025 MetaMapa. Proyecto académico - UTN FRBA.</p>
+            <p>Datos bajo licencia CC-BY-SA · Mapa: © OpenStreetMap contributors</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

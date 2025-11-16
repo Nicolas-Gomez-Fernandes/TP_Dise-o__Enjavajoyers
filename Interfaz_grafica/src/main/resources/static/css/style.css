@@ -1,0 +1,214 @@
+:root {
+    --color-primario: #004E89;
+    --color-secundario: #00A676;
+    --color-resaltado: #FFD23F;
+    --color-gris-claro: #F4F4F4;
+    --color-gris-oscuro: #2B2B2B;
+}
+
+/* Estilos generales */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-gris-claro);
+    color: var(--color-gris-oscuro);
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*TODO VERIFICAR CUAL QUEDA MEJOR*/
+.class bodyLanding {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+main {
+    flex: 1;
+}
+
+/*!* Estilos del header *!*/
+/*header {*/
+/*    background: white;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    padding: 1rem 2rem;*/
+/*    box-shadow: 0 2px 5px rgba(0,0,0,0.1);*/
+/*    position: sticky;*/
+/*    top: 0;*/
+/*    z-index: 100;*/
+/*}*/
+
+.header-title {
+    display: flex;
+    font-size: 1.2rem;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+header h1 {
+    color: var(--color-primario);
+    font-size: 2.2rem;
+    margin: 0;
+
+}
+
+header nav a {
+    margin: 0 0.8rem;
+    text-decoration: none;
+    color: var(--color-primario);
+    font-weight: 500;
+}
+.btn-small-iniciar_sesion {
+    background: var(--color-primario);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Fondo y sombra */
+.navbar {
+    background-color: #1e272e !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .features {
+        flex-direction: column;
+    }
+
+    .hero .btn {
+        width: 90%;
+    }
+
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
+
+/* Footer */
+footer {
+    background: var(--color-gris-oscuro);
+    color: white;
+    padding: 30px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+
+/* Estilos de las tarjetas A VERIFICAR CON LAS DE FRAN */
+
+.card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.list-view .card {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    align-items: center;
+}
+
+.list-view .card img {
+    width: 180px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.list-view .card-content {
+    padding: 1rem;
+    flex: 1;
+}
+
+/*header2*/
+.navbar-custom {
+    background-color: #f8f9fa !important; /* Fondo claro como en la imagen */
+    border-bottom: 1px solid #dee2e6;
+}
+.navbar-custom .navbar-brand {
+    color: #212529 !important; /* Texto oscuro para el brand */
+    font-weight: bold;
+}
+.navbar-custom .nav-link {
+    color: #495057 !important; /* Texto gris para los links */
+}
+.navbar-custom .nav-link:hover {
+    color: #007bff !important; /* Azul al hover */
+}
+.navbar-custom .btn-login {
+    background-color: #007bff !important; /* Azul para el botón */
+    color: white !important;
+    border: none;
+}
+.navbar-custom .btn-login:hover {
+    background-color: #0056b3 !important; /* Azul más oscuro al hover */
+}
+.navbar-custom .navbar-toggler {
+    border-color: #adb5bd;
+}
+
+/*deberia solucionar el dropdown de la navbar*/
+.navbar-custom .nav-link {
+    color: #495057 !important;
+}
+.navbar-custom .dropdown-toggle.text-light {
+    color: #495057 !important;
+}
+
+/*DROPDOWN*/
+.navbar-custom .dropdown-menu {
+    /*display: none; !* Bootstrap lo mostrará dinámicamente *!*/
+    position: absolute;
+    z-index: 2000; /* asegura que quede por encima del header */
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+}
+
+/*!* cuando se muestra *!*/
+/*.navbar-custom .show > .dropdown-menu {*/
+/*    display: block;*/
+/*}*/
+
+/* colores de los ítems del menú */
+.navbar-custom .dropdown-item {
+    color: #212529;
+}
+.navbar-custom .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}

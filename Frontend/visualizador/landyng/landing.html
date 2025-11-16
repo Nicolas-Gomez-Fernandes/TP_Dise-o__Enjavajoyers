@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMapa - Landing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class = "header-title"><strong>MetaMapa</strong></div>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="../../hechos.html">Visualizar Hechos</a>
+        <a href="#">Subir Información</a>
+        <a href="#" class="btn-small" id="loginBtn">Iniciar Sesión</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>MetaMapa</h1>
+    <p>Mapeamos en conjunto eventos relevantes para prevenir, visibilizar y actuar.</p>
+    <a href="../../hechos.html" class="btn btn-primary">Visualizar Hechos</a>
+    <a href="#" class="btn btn-secondary">Subir Información</a>
+</section>
+<section class="section bg-light">
+    <h2>Propósito</h2>
+    <p>MetaMapa surge para aprovechar la inteligencia colectiva y transformarla en información confiable, organizada y útil para la sociedad. Su propósito es recopilar, visibilizar y mapear datos aportados por la comunidad —ya sean descripciones, imágenes, audios o videos— para que puedan ser consultados en tiempo y espacio, contribuyendo a la prevención de problemas, la generación de alertas y la búsqueda de soluciones sociales y ambientales.</p>
+    <h2>Objetivos</h2>
+    <p>Ordenar y etiquetar información de manera geográfica y temporal para facilitar su análisis y consulta.
+    <ul>
+        <ul>✔️ Brindar una plataforma de código abierto que pueda ser instalada y gestionada por ONGs, universidades u organismos estatales.</ul>
+        <ul>✔️ Garantizar la disponibilidad y veracidad de los datos, incluso frente a fallas técnicas o intentos de manipulación, gracias a su diseño descentralizado.</ul>
+        <ul>✔️ Proteger la identidad y privacidad de las personas usuarias, evitando la recopilación de datos personales de quienes solo consultan información.</ul>
+        <ul>✔️ Proveer herramientas colaborativas que permitan vincular información redundante y generar consensos comunitarios.</ul>
+        <ul>✔️ Fomentar la participación ciudadana, permitiendo a individuos y comunidades aportar hechos que visibilicen causas, alerten sobre emergencias o documenten problemáticas sociales.</ul>
+        </p>
+</section>
+<section class="section">
+    <h2>Colecciones destacadas</h2>
+    <div class="cards">
+        <div class="card">
+            <img src="../../img/Incendio-forestal.avif" alt="Incendios forestales">
+            <div class="card-content">
+                <h3>Incendios forestales en Argentina 2025</h3>
+                <a href="#" class="btn-small">Ver colección</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="../../img/rio-contaminado.jpg" alt="Contaminación ríos">
+            <div class="card-content">
+                <h3>Contaminación en ríos de Latinoamérica</h3>
+                <a href="#" class="btn-small">Ver colección</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="../../img/desapariciones.jpg" alt="Desapariciones">
+            <div class="card-content">
+                <h3>Desapariciones vinculadas a crímenes de odio</h3>
+                <a href="#" class="btn-small">Ver colección</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-light">
+    <h2>¿Por qué MetaMapa?</h2>
+    <div class="features">
+        <div class="feature">
+            <h3>🔍 Acceso libre</h3>
+            <p>Visualiza sin registrarte</p>
+        </div>
+        <div class="feature">
+            <h3>📍 Ubicación precisa</h3>
+            <p>Cada hecho geolocalizado</p>
+        </div>
+        <div class="feature">
+            <h3>🤝 Colaboración abierta</h3>
+            <p>Aporta anónimamente</p>
+        </div>
+        <div class="feature">
+            <h3>🔒 Privacidad garantizada</h3>
+            <p>Sin rastreo de visitantes</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Tu aporte es clave</h2>
+    <p>Ayuda a construir un mapa más preciso y útil para todos. Subir un hecho es rápido y no requiere que compartas tu identidad.</p>
+    <a href="#" class="btn btn-primary">Registrar hecho</a> |
+    <a href="#" class="btn btn-primary">Conocer más</a>
+</section>
+
+<!-- Modal de Inicio de Sesión -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        </form>
+        <div class="form-footer">
+            <p>¿No tienes cuenta? <a href="#" id="showRegister">Regístrate aquí</a></p>
+            <a href="#" id="forgotPassword">¿Olvidaste tu contraseña?</a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Registro -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Crear Cuenta</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="regName">Nombre completo</label>
+                <input type="text" id="regName" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="regEmail">Correo electrónico</label>
+                <input type="email" id="regEmail" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="regPassword">Contraseña</label>
+                <input type="password" id="regPassword" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="regConfirmPassword">Confirmar contraseña</label>
+                <input type="password" id="regConfirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+        </form>
+        <div class="form-footer">
+            <p>¿Ya tienes cuenta? <a href="#" id="showLogin">Inicia sesión aquí</a></p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div>
+        <strong>MetaMapa</strong>
+        <p>Proyecto de código abierto para mapeo colaborativo.</p>
+    </div>
+    <div>
+        <a href="#">Inicio</a><br>
+        <a href="../../hechos.html">Visualizar hechos</a><br>
+        <a href="#" id="footerLoginBtn">Registro / Inicio sesión</a><br>
+    </div>
+    <div>
+        <a>Seguinos:</a><br>
+        <a href="#">Facebook</a><br>
+        <a href="#">Twitter</a><br>
+        <a href="#">Instagram</a>
+    </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>

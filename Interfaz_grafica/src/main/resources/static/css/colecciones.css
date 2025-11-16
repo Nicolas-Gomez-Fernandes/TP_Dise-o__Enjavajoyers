@@ -1,0 +1,33 @@
+.hover-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Modo lista */
+.list-view .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.list-view .card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 160px;
+}
+
+.list-view .card img {
+    width: 180px;
+    height: 100%;
+    border-radius: 8px 0 0 8px;
+    object-fit: cover;
+}
+
+.list-view .card-body {
+    text-align: left;
+    padding-left: 20px;
+}

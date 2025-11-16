@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud de Eliminación de Hecho</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background:#f8f9fa }
+        .card { max-width:720px; margin:auto }
+    </style>
+</head>
+<body>
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card shadow p-4">
+                <h1 class="mb-4 text-center">Solicitud de Eliminación de Hecho</h1>
+
+                <div id="alertBox"></div>
+
+                <form id="solicitudForm" novalidate>
+
+                    <div class="mb-3">
+                        <label for="hechoId" class="form-label">ID del Hecho o Título</label>
+                        <input type="text" class="form-control" id="hechoId" name="hechoId" placeholder="Escribe el ID o título del hecho" required>
+                        <div class="form-text">Si conoces el ID, colócalo; si no, escribe el título exacto.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="explicacion" class="form-label">Explicación detallada</label>
+                        <textarea class="form-control" id="explicacion" name="explicacion" rows="5" placeholder="Detalla por qué debe eliminarse este hecho" required></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-danger">Enviar solicitud</button>
+                        <button type="reset" class="btn btn-secondary">Limpiar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById("solicitudForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const hechoId = document.getElementById("hechoId").value.trim();
+        const explicacion = document.getElementById("explicacion").value.trim();
+        const alertBox = document.getElementById("alertBox");
+        alertBox.innerHTML = "";
+
+        if (!hechoId || !explicacion) {
+            alertBox.innerHTML = `<div class="alert alert-warning">Por favor completa todos los campos obligatorios</div>`;
+            return;
+        }
+
+        const solicitud = { hechoId, explicacion };
+
+        const formData = new FormData();
+        formData.append("solicitud", new Blob([JSON.stringify(solicitud)], { type: "application/json" }));
+
+        try {
+            const response = await fetch("http://localhost:8080/hechos/solicitud-eliminacion", {
+                method: "POST",
+                body: formData
+            });
+
+            if (response.ok) {
+                alertBox.innerHTML = `<div class="alert alert-success">Solicitud enviada con éxito. Te notificaremos cuando haya novedades.</div>`;
+                this.reset();
+            } else {
+                let msg = "Error al enviar la solicitud";
+                try {
+                    const data = await response.json();
+                    if (data && data.message) msg = data.message;
+                } catch (e) {}
+                alertBox.innerHTML = `<div class="alert alert-danger">${msg}</div>`;
+            }
+        } catch (error) {
+            console.error("Error en la request:", error);
+            alertBox.innerHTML = `<div class="alert alert-danger">Error de conexión</div>`;
+        }
+    });
+
+    document.getElementById("solicitudForm").addEventListener("reset", function() {
+        document.getElementById("alertBox").innerHTML = "";
+    });
+</script>
+
+</body>
+</html>

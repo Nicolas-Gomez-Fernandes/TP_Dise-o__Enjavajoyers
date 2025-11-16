@@ -1,0 +1,118 @@
+/* Hero */
+.hero {
+    background: url('../images/landing/mapa.png') center/cover no-repeat;
+    text-align: center;
+    padding: 155px 20px;
+    color: black;
+}
+
+.hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.6rem;
+    margin: 1rem 0;
+}
+
+.hero .btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    margin: 0.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--color-primario);
+    color: white;
+    border-radius: 5px;
+}
+
+.btn-secondary {
+    background: white;
+    border: 2px solid var(--color-primario);
+    color: var(--color-primario);
+    border-radius: 5px;
+}
+
+/* Sección por qué */
+
+/*.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}*/
+
+.section {
+    padding: 30px 20px;
+}
+
+.bg-light {
+    /*background: var(--color-gris-claro);*/
+    background: url("static/images/landing/mapa2.png");
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.feature {
+    flex: 1 1 200px;
+}
+
+.feature h3 {
+    margin-top: 0;
+    color: var(--color-primario);
+}
+
+
+
+
+/* Colecciones */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+/* CTA */
+.cta {
+    background: var(--color-primario);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+
+.cta .btn-outline {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}

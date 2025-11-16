@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+
+<!-- Extiende base.html -->
+<head th:replace="~{layout/base :: head(~{::title})}">
+    <title th:text="${titulo}">MetaMapa - Detalle del Hecho</title>
+</head>
+
+<body>
+<!-- Header común -->
+<header th:replace="~{layout/fragments/header2 :: header2}"></header>
+
+<main class="detalle-container" th:fragment="contenido">
+
+    <!-- Botón de regreso -->
+    <div class="back-section">
+        <a th:href="@{/hechos}" class="back-btn">← Volver a Hechos</a>
+    </div>
+
+    <!-- Contenido principal del hecho -->
+    <article class="hecho-detalle" id="hechoDetalle" th:if="${hecho != null}">
+        <img th:src="@{${hecho.imagen}}" th:alt="${hecho.titulo}" class="hecho-imagen-principal">
+
+        <div class="hecho-contenido">
+            <div class="hecho-header">
+                <div>
+                    <span class="hecho-categoria" th:text="${hecho.categoria}">Categoría</span>
+                    <h1 class="hecho-titulo" th:text="${hecho.titulo}">Título del Hecho</h1>
+                </div>
+            </div>
+
+            <div class="hecho-meta">
+                <div class="meta-item">
+                    <span class="icon">📍</span>
+                    <span th:text="${hecho.ubicacion}">Ubicación</span>
+                </div>
+                <div class="meta-item">
+                    <span class="icon">📅</span>
+                    <span th:text="${#dates.format(hecho.fecha_acontecimiento, 'dd/MM/yyyy')}">Fecha</span>
+                </div>
+
+                <div class="meta-item">
+                    <span class="icon">📰</span>
+                    <span>Fuente: <span th:text="${hecho.fuente}">Fuente</span></span>
+                </div>
+            </div>
+
+            <div class="hecho-descripcion" th:text="${hecho.descripcion}">
+                Descripción del hecho.
+            </div>
+
+            <div class="hecho-acciones">
+                <a class="btn-accion btn-compartir" th:href="@{/hechos/compartir/{id}(id=${hecho.id})}">
+                    📤 Compartir
+                </a>
+                <a class="btn-accion btn-reportar" th:href="@{/hechos/reportar/{id}(id=${hecho.id})}">
+                    🚨 Reportar
+                </a>
+                <a class="btn-accion btn-ver-mapa"
+                   th:href="'https://www.google.com/maps?q=' + ${hecho.latitud} + ',' + ${hecho.longitud}"
+                   target="_blank">
+                    🗺️ Ver en Mapa
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- En caso de error o hecho no encontrado -->
+    <div th:if="${hecho == null}" class="loading">
+        <h3>❌ Hecho no encontrado</h3>
+        <a th:href="@{/hechos}" class="back-btn">Volver a Hechos</a>
+    </div>
+</main>
+<footer th:replace="~{layout/fragments/footer :: footer}"></footer>
+
+<link rel="stylesheet" th:href="@{/css/detalle-hecho.css}">
+<script th:src="@{/js/detalle-hecho.js}"></script>
+</body>
+</html>

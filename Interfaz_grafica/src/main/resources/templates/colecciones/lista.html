@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/base :: html}" lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:fragment="extraCss">
+        <link rel="stylesheet" th:href="@{/css/colecciones.css}">
+    </th:block>
+</head>
+
+<div th:fragment="contenido">
+
+    <!-- Sección de encabezado -->
+    <section class="py-5 bg-light text-center">
+        <div class="container">
+            <h1 class="fw-bold mb-3" th:text="${titulo}">Colecciones disponibles</h1>
+            <p class="text-muted mb-4 fs-5">Explorá las colecciones colaborativas del mapa</p>
+
+            <!-- Botones de vista -->
+            <div class="d-flex justify-content-center gap-2 mb-4">
+                <button id="btnGrid" class="btn btn-outline-primary active">
+                    <i class="bi bi-grid-3x3-gap-fill me-1"></i> Vista Tarjetas
+                </button>
+                <button id="btnList" class="btn btn-outline-secondary">
+                    <i class="bi bi-list-ul me-1"></i> Vista Lista
+                </button>
+            </div>
+
+            <!-- Botón Crear Nueva Colección -->
+            <div sec:authorize="hasRole('ADMIN')" class="d-flex justify-content-center mb-4">
+                <a th:href="@{/admin/colecciones/nueva}" class="btn btn-success">
+                    <i class="bi bi-plus-circle me-1"></i> Crear Nueva Colección
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paginación -->
+    <div th:replace="~{fragments/pagination :: pagination}"></div>
+
+    <!-- Contenedor de colecciones -->
+    <section class="py-4">
+        <div class="container">
+            <div id="coleccionesContainer"
+                 class="row g-4"
+                 th:classappend="${vista == 'lista'} ? ' list-view' : ''">
+
+                <!-- Card de colección -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3"
+                     th:each="coleccion : ${page.content}">
+                    <div class="card h-100 shadow-sm border-0 hover-card d-flex flex-column">
+                        <img class="card-img-top rounded-top"
+                             th:src="${coleccion.imagen_url ?: '/images/coleccion-no-image.jpg'}"
+                             alt="Imagen de [[${coleccion.titulo}]]"
+                             style="height: 180px; object-fit: cover;">
+
+                        <div class="card-body text-center d-flex flex-column flex-grow-1">
+                            <h5 class="card-title fw-semibold mb-2"
+                                th:text="${coleccion.titulo}">
+                                Título de la colección
+                            </h5>
+
+                            <p class="text-muted small mb-3" th:text="'Hechos: ' + ${cantHechos}">Hechos: 0</p>
+
+                            <!-- Botones personalizados -->
+                            <div class="mt-auto d-flex justify-content-center gap-2">
+                                <a th:href="@{'/colecciones/' + ${coleccion.id}}" class="btn btn-sm btn-primary px-3">
+                                    Ver
+                                </a>
+                                <a sec:authorize="hasRole('ADMIN')" th:href="@{'/admin/colecciones/editar/' + ${coleccion.id}}" class="btn btn-sm btn-warning px-3">
+                                    Editar
+                                </a>
+                                <form sec:authorize="hasRole('ADMIN')" th:action="@{'/admin/colecciones/' + ${coleccion.id}}" method="post" style="display:inline">
+                                    <input type="hidden" name="_method" value="delete"/>
+                                    <button type="submit" class="btn btn-sm btn-danger px-3">Eliminar</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin card -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Paginación -->
+    <div th:replace="~{fragments/pagination :: pagination}"></div>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const gridBtn = document.getElementById('btnGrid');
+        const listBtn = document.getElementById('btnList');
+        const container = document.getElementById('coleccionesContainer');
+
+        gridBtn.addEventListener('click', () => {
+            container.classList.remove('list-view');
+            gridBtn.classList.add('active');
+            listBtn.classList.remove('active');
+        });
+
+        listBtn.addEventListener('click', () => {
+            container.classList.add('list-view');
+            listBtn.classList.add('active');
+            gridBtn.classList.remove('active');
+        });
+    </script>
+
+</div>
+</html>
