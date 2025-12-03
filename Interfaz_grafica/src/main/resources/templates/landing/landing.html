@@ -15,8 +15,8 @@
     <section class="hero">
         <h1>MetaMapa</h1>
         <p>Mapeamos en conjunto eventos relevantes para prevenir, visibilizar y actuar.</p>
-        <a href="../../hechos.html" class="btn btn-primary">Visualizar Hechos</a>
-        <a href="#" class="btn btn-secondary">Subir Información</a>
+        <a th:href="@{/hechos}" class="btn btn-primary">Visualizar Hechos</a>
+        <a th:href="@{/usuarios/register}" class="btn btn-secondary">Registrarse</a>
     </section>
 
     <!-- Propósito y Objetivos -->
@@ -83,8 +83,8 @@
     <section class="cta">
         <h2>Tu aporte es clave</h2>
         <p>Ayuda a construir un mapa más preciso y útil para todos. Subir un hecho es rápido y no requiere que compartas tu identidad.</p>
-        <a href="#" class="btn btn-primary">Registrar hecho</a> |
-        <a href="#" class="btn btn-primary">Conocer más</a>
+        <a th:href="@{/usuarios/register}" class="btn btn-primary">Registrarse</a> |
+        <a th:href="@{/hechos}" class="btn btn-primary">Ver Hechos</a>
     </section>
 
 </div>
