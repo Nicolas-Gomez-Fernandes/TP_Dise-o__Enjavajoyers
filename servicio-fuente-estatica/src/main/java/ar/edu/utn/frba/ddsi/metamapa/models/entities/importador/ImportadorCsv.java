@@ -6,6 +6,7 @@ import ar.edu.utn.frba.ddsi.metamapa.models.entities.utils.hechos.HechoCSV;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.HeaderColumnNameMappingStrategy;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-
+@Component
 public class ImportadorCsv implements TipoImportador {
   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 

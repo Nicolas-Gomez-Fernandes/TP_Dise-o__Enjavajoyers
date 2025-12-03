@@ -1,0 +1,137 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for ar.edu.frba.ddsi.gestion-de-usuarios:gestion-de-usuarios:jar:0.0.1-SNAPSHOT
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.springframework.boot:spring-boot-starter-security:jar -> duplicate declaration of version (?) @ line 98, column 15
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ------< ar.edu.frba.ddsi.gestion-de-usuarios:gestion-de-usuarios >------
+[INFO] Building gestion-de-usuarios 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.10:run (default-cli) > test-compile @ gestion-de-usuarios >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestion-de-usuarios ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ gestion-de-usuarios ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 25 source files with javac [debug release 17] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gestion-de-usuarios ---
+[INFO] skip non existing resourceDirectory C:\Users\nicol\OneDrive\Escritorio\TP_Dise-o__Enjavajoyers\gestion-de-usuarios\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ gestion-de-usuarios ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 1 source file with javac [debug release 17] to target\test-classes
+[INFO] 
+[INFO] <<< spring-boot:3.2.10:run (default-cli) < test-compile @ gestion-de-usuarios <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.10:run (default-cli) @ gestion-de-usuarios ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v3.2.10)
+
+2025-12-03T18:57:46.305-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] a.e.f.d.g.g.GestionDeUsuariosApplication : Starting GestionDeUsuariosApplication using Java 17.0.12 with PID 24784 (C:\Users\nicol\OneDrive\Escritorio\TP_Dise-o__Enjavajoyers\gestion-de-usuarios\target\classes started by nicol in C:\Users\nicol\OneDrive\Escritorio\TP_Dise-o__Enjavajoyers\gestion-de-usuarios)
+2025-12-03T18:57:46.309-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] a.e.f.d.g.g.GestionDeUsuariosApplication : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T18:57:47.792-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-03T18:57:48.104-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 297 ms. Found 1 JPA repository interface.
+2025-12-03T18:57:49.466-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2025-12-03T18:57:49.492-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T18:57:49.493-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-12-03T18:57:49.685-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-03T18:57:49.686-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3264 ms
+2025-12-03T18:57:50.081-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-03T18:57:50.142-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-12-03T18:57:50.181-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-03T18:57:50.450-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-03T18:57:50.476-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-03T18:57:50.818-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@52b30054
+2025-12-03T18:57:50.821-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-03T18:57:50.893-03:00  WARN 24784 --- [gestion-de-usuarios] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-03T18:57:50.895-03:00  WARN 24784 --- [gestion-de-usuarios] [           main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-12-03T18:57:52.286-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-03T18:57:52.495-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-03T18:57:53.002-03:00  WARN 24784 --- [gestion-de-usuarios] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-03T18:57:53.020-03:00  WARN 24784 --- [gestion-de-usuarios] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 427b78e3-5f4b-4077-a774-9d6f470b77e9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+=== CONFIGURANDO SECURITY ===
+2025-12-03T18:57:53.295-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@255b84a9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a286095, org.springframework.security.web.context.SecurityContextHolderFilter@58038583, org.springframework.security.web.header.HeaderWriterFilter@c7d173f, org.springframework.security.web.authentication.logout.LogoutFilter@1e9b0c92, ar.edu.frba.ddsi.gestion_de_usuarios.gestion_de_usuarios.filters.JwtAuthenticationFilter@26723525, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@42fb2be9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@395c21ee, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11c40a65, org.springframework.security.web.session.SessionManagementFilter@5980e29f, org.springframework.security.web.access.ExceptionTranslationFilter@36570936, org.springframework.security.web.access.intercept.AuthorizationFilter@5dc8448b]
+2025-12-03T18:57:53.459-03:00  WARN 24784 --- [gestion-de-usuarios] [           main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2025-12-03T18:57:53.754-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path ''
+2025-12-03T18:57:53.765-03:00  INFO 24784 --- [gestion-de-usuarios] [           main] a.e.f.d.g.g.GestionDeUsuariosApplication : Started GestionDeUsuariosApplication in 8.162 seconds (process running for 8.849)
+2025-12-03T18:58:33.725-03:00  INFO 24784 --- [gestion-de-usuarios] [nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-03T18:58:33.726-03:00  INFO 24784 --- [gestion-de-usuarios] [nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-03T18:58:33.727-03:00  INFO 24784 --- [gestion-de-usuarios] [nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.apellido,
+        u1_0.contrasenia,
+        u1_0.email,
+        u1_0.fecha_nacimiento,
+        u1_0.nombre,
+        u1_0.rol 
+    from
+        usuarios u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        p1_0.usuario_id,
+        p1_0.permisos 
+    from
+        usuario_permisos p1_0 
+    where
+        p1_0.usuario_id=?
+2025-12-03T18:58:34.208-03:00  INFO 24784 --- [gestion-de-usuarios] [nio-8086-exec-1] a.e.f.d.g.g.controllers.AuthController   : El usuario maria.gonzalez@example.com está logueado. El token generado es eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYS5nb256YWxlekBleGFtcGxlLmNvbSIsImlzcyI6Imdlc3Rpb24tYWx1bW5vcy1zZXJ2ZXIiLCJleHAiOjE3NjQ4MDAwMTR9.eVC_g4St4PEPdWZVBmNNVm4GXYdbR3GZXz7wqT8TNYc
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.apellido,
+        u1_0.contrasenia,
+        u1_0.email,
+        u1_0.fecha_nacimiento,
+        u1_0.nombre,
+        u1_0.rol 
+    from
+        usuarios u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        p1_0.usuario_id,
+        p1_0.permisos 
+    from
+        usuario_permisos p1_0 
+    where
+        p1_0.usuario_id=?
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:42 min
+[INFO] Finished at: 2025-12-03T18:59:08-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.10:run (default-cli) on project gestion-de-usuarios: Process terminated with exit code: 143 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

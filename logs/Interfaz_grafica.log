@@ -1,0 +1,73 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------< ar.edu.frba.ddsi.interfaz_grafica:Interfaz_grafica >---------
+[INFO] Building Interfaz_grafica 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.6:run (default-cli) > test-compile @ Interfaz_grafica >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ Interfaz_grafica ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 25 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ Interfaz_grafica ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ Interfaz_grafica ---
+[INFO] skip non existing resourceDirectory C:\Users\nicol\OneDrive\Escritorio\TP_Dise-o__Enjavajoyers\Interfaz_grafica\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ Interfaz_grafica ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:3.5.6:run (default-cli) < test-compile @ Interfaz_grafica <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.6:run (default-cli) @ Interfaz_grafica ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2025-12-03T18:57:40.733-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] a.e.f.d.i.I.InterfazGraficaApplication   : Starting InterfazGraficaApplication using Java 17.0.12 with PID 18464 (C:\Users\nicol\OneDrive\Escritorio\TP_Dise-o__Enjavajoyers\Interfaz_grafica\target\classes started by nicol in C:\Users\nicol\OneDrive\Escritorio\TP_Dise-o__Enjavajoyers\Interfaz_grafica)
+2025-12-03T18:57:40.739-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] a.e.f.d.i.I.InterfazGraficaApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T18:57:40.845-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-12-03T18:57:40.845-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-12-03T18:57:44.755-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8085 (http)
+2025-12-03T18:57:44.856-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T18:57:44.859-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-12-03T18:57:44.987-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-03T18:57:44.988-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4141 ms
+2025-12-03T18:57:45.808-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name customAuthProvider
+2025-12-03T18:57:47.459-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-12-03T18:57:47.525-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8085 (http) with context path '/'
+2025-12-03T18:57:47.548-03:00  INFO 18464 --- [Interfaz_grafica] [  restartedMain] a.e.f.d.i.I.InterfazGraficaApplication   : Started InterfazGraficaApplication in 8.483 seconds (process running for 10.4)
+2025-12-03T18:58:02.397-03:00  INFO 18464 --- [Interfaz_grafica] [nio-8085-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-03T18:58:02.397-03:00  INFO 18464 --- [Interfaz_grafica] [nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-03T18:58:02.400-03:00  INFO 18464 --- [Interfaz_grafica] [nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-12-03T18:58:03.653-03:00  WARN 18464 --- [Interfaz_grafica] [nio-8085-exec-6] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [147] milliseconds.
+2025-12-03T18:58:05.110-03:00 ERROR 18464 --- [Interfaz_grafica] [nio-8085-exec-8] a.e.f.d.i.I.s.g.GestionHechosService     : Error al obtener todos los hechos: No hay token de acceso disponible
+2025-12-03T18:58:07.878-03:00 ERROR 18464 --- [Interfaz_grafica] [nio-8085-exec-3] a.e.f.d.i.I.s.g.GestionHechosService     : Error al obtener todos los hechos: No hay token de acceso disponible
+2025-12-03T18:58:34.256-03:00  INFO 18464 --- [Interfaz_grafica] [nio-8085-exec-5] a.e.f.d.i.I.p.CustomAuthProvider         : Usuario logeado! Configurando variables de sesión
+2025-12-03T18:58:34.256-03:00  INFO 18464 --- [Interfaz_grafica] [nio-8085-exec-5] a.e.f.d.i.I.p.CustomAuthProvider         : Buscando roles y permisos del usuario
+2025-12-03T18:58:34.335-03:00  INFO 18464 --- [Interfaz_grafica] [nio-8085-exec-5] a.e.f.d.i.I.p.CustomAuthProvider         : Cargando roles y permisos del usuario en sesión
+2025-12-03T18:58:43.947-03:00 ERROR 18464 --- [Interfaz_grafica] [nio-8085-exec-2] a.e.f.d.i.I.s.g.GestionHechosService     : Error al obtener todos los hechos: 404 Not Found from GET http://localhost:8083/hechos
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:35 min
+[INFO] Finished at: 2025-12-03T18:59:06-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.6:run (default-cli) on project Interfaz_grafica: Process terminated with exit code: 143 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

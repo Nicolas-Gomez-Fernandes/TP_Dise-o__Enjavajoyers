@@ -1,0 +1,438 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< ar.edu.frba.ddsi:servicio-agregador >-----------------
+[INFO] Building servicio-agregador 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.10:run (default-cli) > test-compile @ servicio-agregador >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ servicio-agregador ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ servicio-agregador ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ servicio-agregador ---
+[INFO] skip non existing resourceDirectory C:\Users\nicol\OneDrive\Escritorio\TP_Dise-o__Enjavajoyers\servicio-agregador\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ servicio-agregador ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.10:run (default-cli) < test-compile @ servicio-agregador <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.10:run (default-cli) @ servicio-agregador ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v3.2.10)
+
+2025-12-03T18:57:28.710-03:00  INFO 24732 --- [servicio-agregador] [           main] a.e.f.d.s.ServicioAgregadorApplication   : Starting ServicioAgregadorApplication using Java 17.0.12 with PID 24732 (C:\Users\nicol\OneDrive\Escritorio\TP_Dise-o__Enjavajoyers\servicio-agregador\target\classes started by nicol in C:\Users\nicol\OneDrive\Escritorio\TP_Dise-o__Enjavajoyers\servicio-agregador)
+2025-12-03T18:57:28.715-03:00  INFO 24732 --- [servicio-agregador] [           main] a.e.f.d.s.ServicioAgregadorApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T18:57:32.669-03:00  INFO 24732 --- [servicio-agregador] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-03T18:57:33.664-03:00  INFO 24732 --- [servicio-agregador] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 976 ms. Found 6 JPA repository interfaces.
+2025-12-03T18:57:36.197-03:00  INFO 24732 --- [servicio-agregador] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8083 (http)
+2025-12-03T18:57:36.250-03:00  INFO 24732 --- [servicio-agregador] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T18:57:36.250-03:00  INFO 24732 --- [servicio-agregador] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-12-03T18:57:36.483-03:00  INFO 24732 --- [servicio-agregador] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-03T18:57:36.497-03:00  INFO 24732 --- [servicio-agregador] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7532 ms
+2025-12-03T18:57:37.127-03:00  INFO 24732 --- [servicio-agregador] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-03T18:57:37.333-03:00  INFO 24732 --- [servicio-agregador] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-12-03T18:57:37.511-03:00  INFO 24732 --- [servicio-agregador] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-03T18:57:38.772-03:00  INFO 24732 --- [servicio-agregador] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-03T18:57:38.919-03:00  INFO 24732 --- [servicio-agregador] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-03T18:57:39.996-03:00  INFO 24732 --- [servicio-agregador] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3b5da0b0
+2025-12-03T18:57:40.000-03:00  INFO 24732 --- [servicio-agregador] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-03T18:57:40.131-03:00  WARN 24732 --- [servicio-agregador] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-03T18:57:40.134-03:00  WARN 24732 --- [servicio-agregador] [           main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-12-03T18:57:44.001-03:00  INFO 24732 --- [servicio-agregador] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-03T18:57:44.493-03:00  INFO 24732 --- [servicio-agregador] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-03T18:57:45.621-03:00  INFO 24732 --- [servicio-agregador] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-03T18:57:47.060-03:00  WARN 24732 --- [servicio-agregador] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-03T18:57:48.525-03:00  INFO 24732 --- [servicio-agregador] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path ''
+2025-12-03T18:57:48.640-03:00  INFO 24732 --- [servicio-agregador] [           main] a.e.f.d.s.ServicioAgregadorApplication   : Started ServicioAgregadorApplication in 21.853 seconds (process running for 23.376)
+2025-12-03T18:57:48.671-03:00  INFO 24732 --- [servicio-agregador] [pool-4-thread-2] a.e.f.d.s.schedulers.HechoScheduler      : Aplicacion de algoritmos de hechos en proceso.
+2025-12-03T18:57:48.671-03:00  WARN 24732 --- [servicio-agregador] [pool-4-thread-4] a.e.f.d.s.schedulers.HechoScheduler      : Actualización de hechos en proceso. Se pospone la carga de provincias.
+2025-12-03T18:57:48.740-03:00  INFO 24732 --- [servicio-agregador] [pool-4-thread-1] a.e.f.d.s.services.impl.HechosService    : ? Iniciando actualización de hechos
+2025-12-03T18:57:48.741-03:00  INFO 24732 --- [servicio-agregador] [pool-4-thread-1] a.e.f.d.s.services.impl.HechosService    : ? Procesando cliente: FuenteEstaticaClient
+Hibernate: 
+    select
+        h1_0.id,
+        h1_0.categoria_id,
+        h1_0.descripcion,
+        h1_0.eliminado,
+        h1_0.external_id,
+        h1_0.fecha_acontecimiento,
+        h1_0.fecha_creacion,
+        h1_0.fecha_ultima_edicion,
+        h1_0.fuente_id,
+        h1_0.provincia,
+        h1_0.titulo,
+        h1_0.latitud,
+        h1_0.longitud 
+    from
+        hecho h1_0
+Hibernate: 
+    select
+        of1_0.id,
+        of1_0.fuente,
+        of1_0.subfuente 
+    from
+        origen_fuente of1_0
+2025-12-03T18:57:49.391-03:00  INFO 24732 --- [servicio-agregador] [nio-8083-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-03T18:57:49.391-03:00  INFO 24732 --- [servicio-agregador] [nio-8083-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-03T18:57:49.395-03:00  INFO 24732 --- [servicio-agregador] [nio-8083-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nombre 
+    from
+        categorias c1_0
+2025-12-03T18:57:49.752-03:00  INFO 24732 --- [servicio-agregador] [ctor-http-nio-2] a.e.f.d.s.services.impl.HechosService    : ? Recibidos 0 hechos
+2025-12-03T18:57:49.765-03:00  INFO 24732 --- [servicio-agregador] [oundedElastic-1] a.e.f.d.s.services.impl.HechosService    : ? Actualización de hechos completada.
+2025-12-03T18:57:49.768-03:00  INFO 24732 --- [servicio-agregador] [oundedElastic-1] a.e.f.d.s.schedulers.HechoScheduler      : Procesamiento de hechos completado
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0 
+    where
+        se1_0.estado=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nombre 
+    from
+        categorias c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0 
+    where
+        se1_0.estado=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0 
+    order by
+        c1_0.id desc 
+    limit
+        ?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0 
+    order by
+        c1_0.id desc 
+    limit
+        ?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nombre 
+    from
+        categorias c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0 
+    where
+        se1_0.estado=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0 
+    order by
+        c1_0.id desc 
+    limit
+        ?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nombre 
+    from
+        categorias c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0 
+    where
+        se1_0.estado=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nombre 
+    from
+        categorias c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0 
+    where
+        se1_0.estado=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0 
+    order by
+        c1_0.id desc 
+    limit
+        ?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nombre 
+    from
+        categorias c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0 
+    where
+        se1_0.estado=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0 
+    order by
+        c1_0.id desc 
+    limit
+        ?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0 
+    order by
+        c1_0.id 
+    limit
+        ?, ?
+2025-12-03T18:58:48.611-03:00  INFO 24732 --- [servicio-agregador] [pool-4-thread-3] a.e.f.d.s.schedulers.HechoScheduler      : Aplicacion de algoritmos de hechos en proceso.
+Hibernate: 
+    select
+        h1_0.id,
+        h1_0.categoria_id,
+        h1_0.descripcion,
+        h1_0.eliminado,
+        h1_0.external_id,
+        h1_0.fecha_acontecimiento,
+        h1_0.fecha_creacion,
+        h1_0.fecha_ultima_edicion,
+        h1_0.fuente_id,
+        h1_0.provincia,
+        h1_0.titulo,
+        h1_0.latitud,
+        h1_0.longitud 
+    from
+        hecho h1_0
+Hibernate: 
+    select
+        of1_0.id,
+        of1_0.fuente,
+        of1_0.subfuente 
+    from
+        origen_fuente of1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nombre 
+    from
+        categorias c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0 
+    where
+        se1_0.estado=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nombre 
+    from
+        categorias c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0 
+    where
+        se1_0.estado=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.nombre 
+    from
+        categorias c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.algoritmo,
+        c1_0.descripcion,
+        c1_0.titulo 
+    from
+        colecciones c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        solicitudes_eliminacion se1_0 
+    where
+        se1_0.estado=?
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:54 min
+[INFO] Finished at: 2025-12-03T18:59:12-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.10:run (default-cli) on project servicio-agregador: Process terminated with exit code: 143 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
