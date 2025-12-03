@@ -78,7 +78,7 @@ public class GestionUsuariosService {
     try {
       webClient
           .post()
-          .uri(usuariosServiceUrl + "/usuarios")
+          .uri(usuariosServiceUrl + "/usuarios/register")
           .bodyValue(registerRequest)
           .retrieve()
           .bodyToMono(Void.class)
@@ -102,7 +102,7 @@ public class GestionUsuariosService {
     try {
       UsuarioDTO usuarioCreado = webClient
           .post()
-          .uri(usuariosServiceUrl + "/usuarios")
+          .uri(usuariosServiceUrl + "/usuarios/register")
           .bodyValue(usuarioDTO)
           .retrieve()
           .bodyToMono(UsuarioDTO.class)

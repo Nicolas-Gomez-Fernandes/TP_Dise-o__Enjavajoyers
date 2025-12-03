@@ -26,6 +26,19 @@ public class HechoController {
         this.gestionSolicitudEliminacionService = gestionSolicitudEliminacionService;
     }
 
+    @GetMapping
+    public String listarHechos(Model model) {
+        try {
+            var hechos = hechosService.obtenerTodosLosHechos();
+            model.addAttribute("hechos", hechos);
+            model.addAttribute("titulo", "Hechos Históricos");
+            return "hechos/lista-hechos";
+        } catch (Exception e) {
+            model.addAttribute("error", "Error al cargar los hechos: " + e.getMessage());
+            return "error";
+        }
+    }
+
     @PostMapping("/eliminar/{id}")
     public String eliminarHecho(@ModelAttribute("id") Long id,
                                 RedirectAttributes redirectAttributes) {

@@ -32,6 +32,16 @@ public class GestionHechosService {
         this.hechosServiceUrl = hechosServiceUrl;
     }
 
+    public java.util.List<HechoDTO> obtenerTodosLosHechos() {
+        try {
+            HechoDTO[] response = webApiCallerService.get(hechosServiceUrl + "/hechos", HechoDTO[].class);
+            return response != null ? java.util.Arrays.asList(response) : java.util.Collections.emptyList();
+        } catch (Exception e) {
+            log.error("Error al obtener todos los hechos: " + e.getMessage());
+            return java.util.Collections.emptyList();
+        }
+    }
+
     public static HechoDTO obtenerHechoPorId(Long id) {
         HechoDTO response = webApiCallerService.get(hechosServiceUrl + "/hecho/" + id, HechoDTO.class);
         if (response == null) {

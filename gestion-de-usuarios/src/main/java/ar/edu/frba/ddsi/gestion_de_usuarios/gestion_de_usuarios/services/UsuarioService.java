@@ -57,8 +57,10 @@ public class UsuarioService {
     if (usuarioInput.getNombre() == null || usuarioInput.getNombre().trim().isEmpty()) {
       throw new ValidationException("El nombre no puede estar vacío");
     }
-    // ver que el rol exista en los enums
-    if (usuarioInput.getRol() == null || !List.of(TipoRol.values()).contains(usuarioInput.getRol())) {
+    // ver que el rol exista en los enums (si no viene null, asignar CONTRIBUYENTE por defecto)
+    if (usuarioInput.getRol() == null) {
+      usuarioInput.setRol(TipoRol.CONTRIBUYENTE);
+    } else if (!List.of(TipoRol.values()).contains(usuarioInput.getRol())) {
       throw new ValidationException("El rol es inválido");
     }
   }

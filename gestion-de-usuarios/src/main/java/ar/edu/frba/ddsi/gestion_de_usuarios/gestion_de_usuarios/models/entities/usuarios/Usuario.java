@@ -42,6 +42,7 @@ public class Usuario {
   @Column(name = "fecha_nacimiento")
   private LocalDate fechaNacimiento;
   @Column(name = "contrasenia", nullable = false)
+  //@Column(name = "contrasenia", nullable = false, length = 255)
   private String contrasenia;
   @Column(name = "rol", nullable = false)
   private TipoRol rol;

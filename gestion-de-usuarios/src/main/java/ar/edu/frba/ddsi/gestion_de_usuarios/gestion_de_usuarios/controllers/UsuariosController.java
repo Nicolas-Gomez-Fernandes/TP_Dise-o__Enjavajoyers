@@ -46,6 +46,12 @@ public class UsuariosController {
     return ResponseEntity.ok(usuarioService.crearUsuario(usuario));
   }
 
+  // Endpoint público para registro de usuarios (sin autenticación requerida)
+  @PostMapping("/register")
+  public ResponseEntity<UsuarioOutputDTO> registrarUsuario(@RequestBody UsuarioInputDTO usuario) {
+    return ResponseEntity.ok(usuarioService.crearUsuario(usuario));
+  }
+
   @RequestMapping("/permisos")
   public ResponseEntity<List<Permiso>> allPermisos() {
     return ResponseEntity.ok(List.of(Permiso.values()));

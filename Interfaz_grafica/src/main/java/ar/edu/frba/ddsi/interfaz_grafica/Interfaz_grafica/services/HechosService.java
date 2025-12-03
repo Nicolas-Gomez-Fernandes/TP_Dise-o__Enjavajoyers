@@ -20,6 +20,10 @@ public class HechosService {
         return gestionHechosService.crearHecho(hechoDTO);
     }
 
+    public java.util.List<HechoDTO> obtenerTodosLosHechos() {
+        return gestionHechosService.obtenerTodosLosHechos();
+    }
+
     public HechoDTO obtenerHechoPorId(Long id) {
         return gestionHechosService.obtenerHechoPorId(id);
     }
