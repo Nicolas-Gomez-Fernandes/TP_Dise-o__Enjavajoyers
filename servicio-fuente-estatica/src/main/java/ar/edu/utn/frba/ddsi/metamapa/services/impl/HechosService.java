@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -120,24 +121,33 @@ public class HechosService implements IHechosService {
   public void guardarHechos(List<Hecho> hechos) {
     log.info("💾 Guardando {} hechos en el repositorio...", hechos.size());
 
-    // Traer los títulos ya existentes
-    List<String> existentes = hechosRepository.findAllTitulos();
+    int nuevos = 0;
+    int actualizados = 0;
 
-    // Filtrar hechos para mantener solo aquellos que no existen en la base de datos
-    List<Hecho> hechosNuevos = hechos.stream()
-        .filter(hecho -> !existentes.contains(hecho.getTitulo()))
-        .toList();
-
-    // Guardar solo los hechos nuevos
-    if (!hechosNuevos.isEmpty()) {
-      hechosRepository.saveAll(hechosNuevos);
-      log.info("✅ Guardados {} hechos nuevos correctamente", hechosNuevos.size());
-    } else {
-      log.info("ℹ️ No se encontraron hechos nuevos para guardar");
+    // Implementar UPSERT: actualizar si existe, crear si no existe
+    for (Hecho hecho : hechos) {
+      java.util.Optional<Hecho> existente = hechosRepository.findByTitulo(hecho.getTitulo());
+      
+      if (existente.isPresent()) {
+        // Si existe, actualizar sus atributos
+        Hecho hechoExistente = existente.get();
+        hechoExistente.setDescripcion(hecho.getDescripcion());
+        hechoExistente.setCategoria(hecho.getCategoria());
+        hechoExistente.setFecha(hecho.getFecha());
+        hechoExistente.setUbicacion(hecho.getUbicacion());
+        hechoExistente.setFuente(hecho.getFuente());
+        hechoExistente.setEliminado(hecho.getEliminado());
+        hechosRepository.save(hechoExistente);
+        actualizados++;
+      } else {
+        // Si no existe, guardarlo como nuevo
+        hechosRepository.save(hecho);
+        nuevos++;
+      }
     }
 
-
-    log.info("cantidad de hechos en el repo: {}", this.hechosRepository.findAll().size());
+    log.info("✅ Guardados {} hechos nuevos y actualizados {} existentes", nuevos, actualizados);
+    log.info("📊 Total de hechos en el repositorio: {}", this.hechosRepository.findAll().size());
   }
 
   @Override
@@ -145,6 +155,56 @@ public class HechosService implements IHechosService {
     return hechosRepository
         .findAll()
         .stream()
+        .map(ManualHechoMapper::map)
+        .toList();
+  }
+
+  @Override
+  public List<HechoOutputDTO> getHechosFiltrados(String categoria, String titulo, String fechaDesde, String fechaHasta) {
+    List<Hecho> hechos = hechosRepository.findAll();
+    
+    // Filtrar por categoría
+    if (categoria != null && !categoria.trim().isEmpty()) {
+      String categoriaLower = categoria.toLowerCase();
+      hechos = hechos.stream()
+          .filter(h -> h.getCategoria() != null && 
+                       h.getCategoria().getNombre().toLowerCase().contains(categoriaLower))
+          .toList();
+    }
+    
+    // Filtrar por título
+    if (titulo != null && !titulo.trim().isEmpty()) {
+      String tituloLower = titulo.toLowerCase();
+      hechos = hechos.stream()
+          .filter(h -> h.getTitulo() != null && 
+                       h.getTitulo().toLowerCase().contains(tituloLower))
+          .toList();
+    }
+    
+    // Filtrar por rango de fechas (convertir LocalDateTime a LocalDate para comparación)
+    if (fechaDesde != null && !fechaDesde.trim().isEmpty()) {
+      try {
+        LocalDate desde = LocalDate.parse(fechaDesde);
+        hechos = hechos.stream()
+            .filter(h -> h.getFecha() != null && !h.getFecha().toLocalDate().isBefore(desde))
+            .toList();
+      } catch (Exception e) {
+        log.warn("⚠️ Formato de fecha inválido para fechaDesde: {}", fechaDesde);
+      }
+    }
+    
+    if (fechaHasta != null && !fechaHasta.trim().isEmpty()) {
+      try {
+        LocalDate hasta = LocalDate.parse(fechaHasta);
+        hechos = hechos.stream()
+            .filter(h -> h.getFecha() != null && !h.getFecha().toLocalDate().isAfter(hasta))
+            .toList();
+      } catch (Exception e) {
+        log.warn("⚠️ Formato de fecha inválido para fechaHasta: {}", fechaHasta);
+      }
+    }
+    
+    return hechos.stream()
         .map(ManualHechoMapper::map)
         .toList();
   }

@@ -31,8 +31,19 @@ public class HechosController {
   }
 
   @GetMapping
-  public ResponseEntity<List<HechoOutputDTO>> getHechos() {
-    return ResponseEntity.ok(hechosService.getHechos());
+  public ResponseEntity<List<HechoOutputDTO>> getHechos(
+      @org.springframework.web.bind.annotation.RequestParam(required = false) String categoria,
+      @org.springframework.web.bind.annotation.RequestParam(required = false) String titulo,
+      @org.springframework.web.bind.annotation.RequestParam(required = false) String fechaDesde,
+      @org.springframework.web.bind.annotation.RequestParam(required = false) String fechaHasta) {
+    
+    // Si no hay filtros, devolver todos
+    if (categoria == null && titulo == null && fechaDesde == null && fechaHasta == null) {
+      return ResponseEntity.ok(hechosService.getHechos());
+    }
+    
+    // Aplicar filtros
+    return ResponseEntity.ok(hechosService.getHechosFiltrados(categoria, titulo, fechaDesde, fechaHasta));
   }
 
   /*@PostMapping("/import-dataset")

@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface IHechosService {
   List<HechoOutputDTO> getHechos();
+  List<HechoOutputDTO> getHechosFiltrados(String categoria, String titulo, String fechaDesde, String fechaHasta);
   Hecho crearHecho(HechoInputCsvDTO hecho);
   List<Hecho> eliminarDuplicados(List<Hecho> hechos);
   void guardarHechos(List<Hecho> hechos);

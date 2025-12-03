@@ -15,4 +15,7 @@ public interface IHechosRepository extends JpaRepository<Hecho, Long> {
 
   @Query("SELECT h.titulo FROM Hecho h")
   List<String> findAllTitulos();
+  
+  // Método para buscar por título (necesario para upsert)
+  java.util.Optional<Hecho> findByTitulo(String titulo);
 }
