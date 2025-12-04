@@ -119,4 +119,20 @@ public class GestionUsuariosService {
       throw new RuntimeException("Error de conexión con el servicio de usuarios: " + e.getMessage(), e);
     }
   }
+
+  public UsuarioDTO obtenerUsuarioPorEmail(String email, String accessToken) {
+    try {
+      log.info("Obteniendo usuario por email: " + email);
+      log.info("Token recibido: " + (accessToken != null ? "Sí (longitud: " + accessToken.length() + ")" : "No"));
+      UsuarioDTO usuario = webApiCallerService.getWithAuth(
+          usuariosServiceUrl + "/usuarios/email/" + email,
+          accessToken,
+          UsuarioDTO.class
+      );
+      return usuario;
+    } catch (Exception e) {
+      log.error("Error al obtener usuario: " + e.getMessage());
+      throw new RuntimeException("Error al obtener usuario: " + e.getMessage(), e);
+    }
+  }
 }

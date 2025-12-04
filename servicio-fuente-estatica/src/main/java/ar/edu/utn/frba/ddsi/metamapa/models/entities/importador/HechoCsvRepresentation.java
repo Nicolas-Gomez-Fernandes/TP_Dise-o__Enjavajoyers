@@ -15,11 +15,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class HechoCsvRepresentation {
-  @CsvBindByName(column = "Título")
+  @CsvBindByName(column = "Titulo")
   private String titulo;
-  @CsvBindByName(column = "Descripción")
+  @CsvBindByName(column = "Descripcion")
   private String descripcion;
-  @CsvBindByName(column = "Categoría")
+  @CsvBindByName(column = "Categoria")
   private String categoria;
   @CsvBindByName(column = "Latitud")
   private Double latitud;

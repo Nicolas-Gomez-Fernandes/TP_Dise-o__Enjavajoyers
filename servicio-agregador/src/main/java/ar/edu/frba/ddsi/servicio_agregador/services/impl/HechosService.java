@@ -212,6 +212,14 @@ public class HechosService implements IHechosService {
     return hechos.stream().map(this::HechoToHechoDTO).toList();
   }
 
+  public HechoOutputDTO getHechoPorId(Long id) {
+    Hecho hecho = this.hechosRepository.findById(id).orElse(null);
+    if (hecho == null) {
+      return null;
+    }
+    return HechoToHechoDTO(hecho);
+  }
+
   private HechoOutputDTO HechoToHechoDTO(Hecho hecho) {
 
     UbicacionDto ubicacionDto = UbicacionDto.builder()

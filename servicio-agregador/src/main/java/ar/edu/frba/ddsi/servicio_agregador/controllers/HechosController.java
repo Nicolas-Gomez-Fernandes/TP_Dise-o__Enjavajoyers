@@ -4,6 +4,7 @@ import ar.edu.frba.ddsi.servicio_agregador.models.dtos.output.HechoOutputDTO;
 import ar.edu.frba.ddsi.servicio_agregador.services.impl.HechosService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +29,15 @@ public class HechosController {
     @GetMapping
     public List<HechoOutputDTO> getHechos(){
         return this.hechosService.getHechos();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<HechoOutputDTO> getHechoPorId(@PathVariable Long id){
+        HechoOutputDTO hecho = this.hechosService.getHechoPorId(id);
+        if (hecho == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(hecho);
     }
 
     @GetMapping("/provincias")

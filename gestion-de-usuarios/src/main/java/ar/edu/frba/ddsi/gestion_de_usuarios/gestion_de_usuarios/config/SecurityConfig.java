@@ -25,7 +25,7 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> {
           auth.requestMatchers("/api/auth", "/api/auth/refresh",
               "/usuarios/register", "/usuarios/permisos").permitAll();
-          auth.requestMatchers("/api/auth/user/roles-permisos").authenticated();
+          auth.requestMatchers("/api/auth/user/roles-permisos", "/usuarios/email/**").authenticated();
           auth.anyRequest().authenticated();
         })
         .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

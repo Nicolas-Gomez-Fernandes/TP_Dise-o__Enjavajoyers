@@ -20,6 +20,10 @@ public class UsuariosService {
     return gestionUsuariosService.crearUsuario(usuarioDTO);
   }
 
+  public UsuarioDTO obtenerUsuarioPorEmail(String email, String accessToken) {
+    return gestionUsuariosService.obtenerUsuarioPorEmail(email, accessToken);
+  }
+
   private void validarUsuario(UsuarioDTO usuarioDTO) {
     // TODO: Validaciones
   }

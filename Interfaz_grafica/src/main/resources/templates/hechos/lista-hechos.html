@@ -6,6 +6,7 @@
     <title>MetaMapa - Visualizar Hechos</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/lista-hechos.css}">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -131,26 +132,27 @@
                         <p class="hecho-descripcion" th:text="${hecho.descripcion}">Descripción del hecho</p>
                         
                         <div class="hecho-meta">
-                            <span th:if="${hecho.fecha != null}">
-                                📅 <span th:text="${#temporals.format(hecho.fecha, 'dd/MM/yyyy')}">Fecha</span>
+                            <span th:if="${hecho.fecha_hecho != null}">
+                                📅 <span th:text="${#temporals.format(hecho.fecha_hecho, 'dd/MM/yyyy')}">Fecha</span>
                             </span>
-                            <span th:if="${hecho.ubicacion != null}">
-                                📍 <span th:text="${hecho.ubicacion}">Ubicación</span>
+                            <span th:if="${hecho.latitud != null and hecho.longitud != null}">
+                                📍 <span th:text="${hecho.latitud + ', ' + hecho.longitud}">Ubicación</span>
                             </span>
                             <span th:if="${hecho.categoria != null}">
                                 <span class="badge-categoria" th:text="${hecho.categoria}">Categoría</span>
                             </span>
                         </div>
-                    </div>
-                    <div>
-                        <a th:href="@{/hechos/detalle/{id}(id=${hecho.id})}" class="btn btn-primary btn-sm">Ver Detalle</a>
+                        </div>
+                        <a th:href="@{/hechos/detalle/{id}(id=${hecho.id})}" class="btn-ver-detalle">
+                            Ver Detalle →
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Mensaje cuando no hay hechos -->
-        <div class="no-hechos" th:if="${hechos == null or hechos.isEmpty()}">
+        <div class="empty-state" th:if="${hechos == null or hechos.isEmpty()}">
             <h3>📭 No hay hechos registrados</h3>
             <p>Aún no se han reportado hechos históricos en el sistema.</p>
         </div>

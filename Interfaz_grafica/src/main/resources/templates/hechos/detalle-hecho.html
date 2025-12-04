@@ -3,9 +3,14 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
 
-<!-- Extiende base.html -->
-<head th:replace="~{layout/base :: head(~{::title})}">
+<head>
     <title th:text="${titulo}">MetaMapa - Detalle del Hecho</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -21,8 +26,6 @@
 
     <!-- Contenido principal del hecho -->
     <article class="hecho-detalle" id="hechoDetalle" th:if="${hecho != null}">
-        <img th:src="@{${hecho.imagen}}" th:alt="${hecho.titulo}" class="hecho-imagen-principal">
-
         <div class="hecho-contenido">
             <div class="hecho-header">
                 <div>
@@ -32,37 +35,23 @@
             </div>
 
             <div class="hecho-meta">
-                <div class="meta-item">
+                <div class="meta-item" th:if="${hecho.latitud != null and hecho.longitud != null}">
                     <span class="icon">📍</span>
-                    <span th:text="${hecho.ubicacion}">Ubicación</span>
+                    <span th:text="${hecho.latitud + ', ' + hecho.longitud}">Ubicación</span>
                 </div>
-                <div class="meta-item">
+                <div class="meta-item" th:if="${hecho.fecha_hecho != null}">
                     <span class="icon">📅</span>
-                    <span th:text="${#dates.format(hecho.fecha_acontecimiento, 'dd/MM/yyyy')}">Fecha</span>
+                    <span th:text="${#temporals.format(hecho.fecha_hecho, 'dd/MM/yyyy')}">Fecha</span>
                 </div>
 
                 <div class="meta-item">
                     <span class="icon">📰</span>
-                    <span>Fuente: <span th:text="${hecho.fuente}">Fuente</span></span>
+                    <span>Fuente Estática</span>
                 </div>
             </div>
 
             <div class="hecho-descripcion" th:text="${hecho.descripcion}">
                 Descripción del hecho.
-            </div>
-
-            <div class="hecho-acciones">
-                <a class="btn-accion btn-compartir" th:href="@{/hechos/compartir/{id}(id=${hecho.id})}">
-                    📤 Compartir
-                </a>
-                <a class="btn-accion btn-reportar" th:href="@{/hechos/reportar/{id}(id=${hecho.id})}">
-                    🚨 Reportar
-                </a>
-                <a class="btn-accion btn-ver-mapa"
-                   th:href="'https://www.google.com/maps?q=' + ${hecho.latitud} + ',' + ${hecho.longitud}"
-                   target="_blank">
-                    🗺️ Ver en Mapa
-                </a>
             </div>
         </div>
     </article>
@@ -76,6 +65,7 @@
 <footer th:replace="~{layout/fragments/footer :: footer}"></footer>
 
 <link rel="stylesheet" th:href="@{/css/detalle-hecho.css}">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script th:src="@{/js/detalle-hecho.js}"></script>
 </body>
 </html>

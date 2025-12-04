@@ -17,7 +17,12 @@ public class ManualHechoMapper {
     dto.setLongitud(hecho.getUbicacion().getLongitud());
     dto.setFecha_hecho(hecho.getFecha());
     dto.setEliminado(hecho.getEliminado());
-    dto.setOrigen(new OrigenFuenteDTO(hecho.getFuente().getCsvPath(), "ESTATICA"));
+    // Manejar fuente nula
+    if (hecho.getFuente() != null) {
+      dto.setOrigen(new OrigenFuenteDTO(hecho.getFuente().getCsvPath(), "ESTATICA"));
+    } else {
+      dto.setOrigen(new OrigenFuenteDTO("hechos.csv", "ESTATICA"));
+    }
     // Etiquetas y eliminado ignóralos
     return dto;
   }

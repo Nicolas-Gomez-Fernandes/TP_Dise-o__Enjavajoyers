@@ -43,7 +43,7 @@ public class GestionHechosService {
     }
 
     public static HechoDTO obtenerHechoPorId(Long id) {
-        HechoDTO response = webApiCallerService.get(hechosServiceUrl + "/hecho/" + id, HechoDTO.class);
+        HechoDTO response = webApiCallerService.get(hechosServiceUrl + "/hechos/" + id, HechoDTO.class);
         if (response == null) {
             throw new NotFoundException("Hecho", id);
         }

@@ -5,7 +5,10 @@ import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.rolesYPermisos.Ro
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.usuarios.UsuarioDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.UsuariosService;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.gestores.GestionUsuariosService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +22,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDate;
 
 @Controller
-@RequestMapping("/usuarios")
 public class UsuariosController {
 
     private final UsuariosService usuariosService;
@@ -29,14 +31,14 @@ public class UsuariosController {
         this.usuariosService = usuariosService;
     }
 
-    @GetMapping("/register")
+    @GetMapping("/usuarios/register")
     public String crearUsuario(Model model) {
         model.addAttribute("titulo", "Registro de Usuario");
         model.addAttribute("usuario", new UsuarioDTO(Rol.CONTRIBUYENTE));
         return "register";
     }
 
-    @PostMapping("/crear")
+    @PostMapping("/usuarios/crear")
     public String crearUsuario(@ModelAttribute("usuario") UsuarioDTO usuarioDTO,
                                 @RequestParam("confirmPassword") String confirmPassword,
                                BindingResult bindingResult,
@@ -54,6 +56,28 @@ public class UsuariosController {
             model.addAttribute("tipoMensaje", "danger");
             model.addAttribute("titulo", "Registro de Usuario");
             return "register";
+        }
+    }
+
+    @GetMapping("/perfil")
+    public String verPerfil(Model model, HttpSession session) {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String email = authentication.getName();
+            String accessToken = (String) session.getAttribute("accessToken");
+            
+            if (accessToken == null) {
+                return "redirect:/login";
+            }
+            
+            UsuarioDTO usuario = usuariosService.obtenerUsuarioPorEmail(email, accessToken);
+            
+            model.addAttribute("titulo", "Mi Perfil");
+            model.addAttribute("usuario", usuario);
+            return "usuarios/perfil";
+        } catch (Exception ex) {
+            model.addAttribute("error", "No se pudo cargar el perfil: " + ex.getMessage());
+            return "redirect:/metamapa";
         }
     }
 }

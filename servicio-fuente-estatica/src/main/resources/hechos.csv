@@ -1,16 +1,16 @@
-Título,Descripción,Categoría,Latitud,Longitud,Fecha del hecho
-Incendio forestal en Córdoba,Gran incendio forestal afectó miles de hectáreas en las sierras de Córdoba durante el verano,Incendio,-31.4201,-64.1888,2020-08-15
-Inundaciones en Buenos Aires,Lluvias torrenciales causaron graves inundaciones en la provincia de Buenos Aires,Inundación,-34.6037,-58.3816,2021-02-10
-Deforestación en Chaco,Extensas áreas de bosque nativo fueron deforestadas para agricultura,Deforestación,-27.4605,-58.9867,2019-11-20
-Contaminación del Riachuelo,Altos niveles de contaminación detectados en el Riachuelo afectando la fauna local,Contaminación,-34.6542,-58.3644,2022-05-18
-Terremoto en San Juan,Sismo de magnitud 6.4 sacudió la provincia de San Juan,Terremoto,-31.5375,-68.5364,2021-01-18
-Sequía en Mendoza,Prolongada sequía afectó la producción agrícola y vinícola de Mendoza,Sequía,-32.8895,-68.8458,2020-12-05
-Tornado en Santa Fe,Tornado causó daños materiales en localidades del sur de Santa Fe,Tornado,-31.6107,-60.6973,2023-03-22
-Avalancha en Bariloche,Avalancha de nieve en cerro Catedral dejó varios heridos,Avalancha,-41.1335,-71.3103,2022-07-30
-Contaminación minera en Catamarca,Derrame de sustancias tóxicas de mina afectó cursos de agua,Contaminación,-28.4696,-65.7795,2021-09-12
-Incendio en Delta del Paraná,Incendios intencionales destruyeron gran parte del humedal del Delta,Incendio,-34.0922,-58.8356,2020-09-25
+Titulo,Descripcion,Categoria,Latitud,Longitud,Fecha del hecho
+Incendio forestal en Cordoba,Gran incendio forestal afecto miles de hectareas en las sierras de Cordoba durante el verano,Incendio,-31.4201,-64.1888,2020-08-15
+Inundaciones en Buenos Aires,Lluvias torrenciales causaron graves inundaciones en la provincia de Buenos Aires,Inundacion,-34.6037,-58.3816,2021-02-10
+Deforestacion en Chaco,Extensas areas de bosque nativo fueron deforestadas para agricultura,Deforestacion,-27.4605,-58.9867,2019-11-20
+Contaminacion del Riachuelo,Altos niveles de contaminacion detectados en el Riachuelo afectando la fauna local,Contaminacion,-34.6542,-58.3644,2022-05-18
+Terremoto en San Juan,Sismo de magnitud 6.4 sacudio la provincia de San Juan,Terremoto,-31.5375,-68.5364,2021-01-18
+Sequia en Mendoza,Prolongada sequia afecto la produccion agricola y vinicola de Mendoza,Sequia,-32.8895,-68.8458,2020-12-05
+Tornado en Santa Fe,Tornado causo danos materiales en localidades del sur de Santa Fe,Tornado,-31.6107,-60.6973,2023-03-22
+Avalancha en Bariloche,Avalancha de nieve en cerro Catedral dejo varios heridos,Avalancha,-41.1335,-71.3103,2022-07-30
+Contaminacion minera en Catamarca,Derrame de sustancias toxicas de mina afecto cursos de agua,Contaminacion,-28.4696,-65.7795,2021-09-12
+Incendio en Delta del Parana,Incendios intencionales destruyeron gran parte del humedal del Delta,Incendio,-34.0922,-58.8356,2020-09-25
 Deslizamiento en Jujuy,Fuertes lluvias causaron deslizamiento de tierra en ruta provincial,Deslizamiento,-24.1858,-65.2995,2023-01-14
-Granizada en Tucumán,Intensa granizada destruyó cultivos de limón y caña de azúcar,Granizada,-26.8083,-65.2176,2022-11-08
-Helada en La Pampa,Helada tardía afectó campos de trigo en plena época de cosecha,Helada,-36.6167,-64.2833,2021-10-20
-Alud en Ushuaia,Alud de nieve bloqueó ruta de acceso a centro de esquí,Alud,-54.8019,-68.3029,2022-08-17
-Contaminación del Lago San Roque,Floración de algas tóxicas en lago afectó suministro de agua potable,Contaminación,-31.3547,-64.4569,2023-02-28
+Granizada en Tucuman,Intensa granizada destruyo cultivos de limon y cana de azucar,Granizada,-26.8083,-65.2176,2022-11-08
+Helada en La Pampa,Helada tardia afecto campos de trigo en plena epoca de cosecha,Helada,-36.6167,-64.2833,2021-10-20
+Alud en Ushuaia,Alud de nieve bloqueo ruta de acceso a centro de esqui,Alud,-54.8019,-68.3029,2022-08-17
+Contaminacion del Lago San Roque,Floracion de algas toxicas en lago afecto suministro de agua potable,Contaminacion,-31.3547,-64.4569,2023-02-28

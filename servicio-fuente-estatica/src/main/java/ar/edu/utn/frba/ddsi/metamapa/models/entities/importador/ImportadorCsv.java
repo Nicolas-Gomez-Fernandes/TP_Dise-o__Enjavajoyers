@@ -24,6 +24,7 @@ import java.util.List;
 @Component
 public class ImportadorCsv implements TipoImportador {
   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+  DateTimeFormatter isoFormatter = DateTimeFormatter.ISO_LOCAL_DATE; // Para fechas yyyy-MM-dd
 
     @Override
     public Mono<List<Hecho>> importarHechosDesdePath(String rutaArchivo) {
@@ -73,14 +74,28 @@ public class ImportadorCsv implements TipoImportador {
 
       return csvToBean.parse()
           .stream()
-          .map(csvLine -> HechoInputCsvDTO.builder()
-              .titulo(csvLine.getTitulo())
-              .descripcion(csvLine.getDescripcion())
-              .categoria(csvLine.getCategoria())
-              .latitud(csvLine.getLatitud())
-              .longitud(csvLine.getLongitud())
-              .fecha(LocalDate.parse(csvLine.getFecha(), formatter).atStartOfDay())
-              .build())
+          .map(csvLine -> {
+              // Intentar parsear con ambos formatos de fecha
+              LocalDateTime fecha;
+              try {
+                  fecha = LocalDate.parse(csvLine.getFecha(), isoFormatter).atStartOfDay();
+              } catch (Exception e) {
+                  try {
+                      fecha = LocalDate.parse(csvLine.getFecha(), formatter).atStartOfDay();
+                  } catch (Exception ex) {
+                      fecha = LocalDateTime.now();
+                  }
+              }
+              
+              return HechoInputCsvDTO.builder()
+                  .titulo(csvLine.getTitulo())
+                  .descripcion(csvLine.getDescripcion())
+                  .categoria(csvLine.getCategoria())
+                  .latitud(csvLine.getLatitud())
+                  .longitud(csvLine.getLongitud())
+                  .fecha(fecha)
+                  .build();
+          })
           .toList();
     } catch (IOException e) {
       throw new RuntimeException("Error al leer el archivo CSV",e);

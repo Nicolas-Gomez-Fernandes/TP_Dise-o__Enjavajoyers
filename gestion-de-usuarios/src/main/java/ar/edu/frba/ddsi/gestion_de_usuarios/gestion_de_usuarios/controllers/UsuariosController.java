@@ -40,6 +40,11 @@ public class UsuariosController {
     return ResponseEntity.ok(this.usuarioService.obtenerUsuarioPorId(id));
   }
 
+  @GetMapping("/email/{email}")
+  public ResponseEntity<UsuarioOutputDTO> obtenerUsuarioPorEmail(@PathVariable String email) {
+    return ResponseEntity.ok(this.usuarioService.obtenerUsuarioPorEmail(email));
+  }
+
   @PreAuthorize("hasAnyRole('ADMIN')")
   @PostMapping
   public ResponseEntity<UsuarioOutputDTO> crearUsuario(@RequestBody UsuarioInputDTO usuario) {

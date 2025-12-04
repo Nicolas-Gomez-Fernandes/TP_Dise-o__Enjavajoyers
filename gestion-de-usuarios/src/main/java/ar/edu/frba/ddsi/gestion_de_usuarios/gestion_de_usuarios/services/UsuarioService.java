@@ -78,6 +78,7 @@ public class UsuarioService {
         .nombre(usuario.getNombre())
         .apellido(usuario.getApellido())
         .email(usuario.getEmail())
+        .fechaNacimiento(usuario.getFechaNacimiento())
         .rol(usuario.getRol())
         .permisos(usuario.getPermisos())
         .build();
@@ -127,6 +128,13 @@ public class UsuarioService {
   public UsuarioOutputDTO obtenerUsuarioPorId(Long id) {
     Usuario usuario = this.usuariosRepository.findById(id)
         .orElseThrow(() -> new NotFoundException("usuario", id.toString()));
+
+    return this.convertirADTO(usuario);
+  }
+
+  public UsuarioOutputDTO obtenerUsuarioPorEmail(String email) {
+    Usuario usuario = this.usuariosRepository.findByEmail(email)
+        .orElseThrow(() -> new NotFoundException("usuario con email", email));
 
     return this.convertirADTO(usuario);
   }

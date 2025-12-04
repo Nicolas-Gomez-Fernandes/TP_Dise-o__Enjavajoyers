@@ -1,10 +1,132 @@
+/* Fondo con gradiente morado */
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sección de encabezado */
+section.bg-light {
+    background: white !important;
+    border-radius: 15px;
+    margin: 20px auto;
+    max-width: 95%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    padding: 30px 20px;
+}
+
+section.bg-light h1 {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+/* Botones de vista */
+.btn-outline-primary {
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: #667eea;
+    color: white;
+}
+
+.btn-outline-secondary {
+    border-color: #764ba2;
+    color: #764ba2;
+}
+
+.btn-outline-secondary:hover {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: #764ba2;
+    color: white;
+}
+
+/* Botón crear colección */
+.btn-success {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Contenedor de colecciones */
+section.py-4 {
+    background: white;
+    border-radius: 15px;
+    margin: 20px auto;
+    max-width: 95%;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    padding: 30px 20px;
+}
+
+/* Cards de colecciones */
 .hover-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid rgba(102, 126, 234, 0.2);
 }
 
 .hover-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    border-color: #667eea;
+}
+
+.hover-card .card-img-top {
+    border-bottom: 3px solid #667eea;
+}
+
+.hover-card .card-title {
+    color: #667eea;
+    font-weight: 600;
+}
+
+/* Botones de acción en cards */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #ffa726, #fb8c00);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 167, 38, 0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef5350, #e53935);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(239, 83, 80, 0.4);
 }
 
 /* Modo lista */
@@ -23,11 +145,25 @@
 .list-view .card img {
     width: 180px;
     height: 100%;
-    border-radius: 8px 0 0 8px;
+    border-radius: 15px 0 0 15px;
     object-fit: cover;
+    border-bottom: none;
+    border-right: 3px solid #667eea;
 }
 
 .list-view .card-body {
     text-align: left;
     padding-left: 20px;
+}
+
+/* Animaciones suaves */
+.card,
+.btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Contador de hechos */
+.text-muted.small {
+    color: #764ba2 !important;
+    font-weight: 500;
 }
