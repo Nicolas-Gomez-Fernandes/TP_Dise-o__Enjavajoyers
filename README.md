@@ -21,11 +21,12 @@ Antes de comenzar, asegurate de tener instalado:
 ### Software Requerido
 - **Java 17** (JDK 17.0.12 o superior)
 - **Maven 3.9.11** (o superior)
-- **XAMPP** (para MySQL)
+- **Docker Desktop** (para MySQL en contenedor)
 - **Git Bash** (para Windows)
 - **VS Code** (recomendado) con extensiones:
   - Extension Pack for Java
   - Spring Boot Extension Pack
+  - Docker (opcional, para gestionar contenedores)
 
 ### Verificar Instalaciones
 
@@ -38,8 +39,12 @@ java -version
 mvn -version
 # Debe mostrar: Apache Maven 3.9.11 o superior
 
-# MySQL (desde XAMPP)
-# Abrir XAMPP Control Panel y verificar que MySQL esté disponible
+# Docker
+docker --version
+# Debe mostrar: Docker version XX.X.X o superior
+
+docker ps
+# Debe mostrar la lista de contenedores corriendo (vacío si no hay ninguno)
 ```
 
 ---
@@ -53,21 +58,51 @@ git clone https://github.com/Nicolas-Gomez-Fernandes/TP_Dise-o__Enjavajoyers.git
 cd TP_Dise-o__Enjavajoyers
 ```
 
-### 2️⃣ Configurar MySQL (XAMPP)
+### 2️⃣ Configurar MySQL con Docker
 
-1. **Abrir XAMPP Control Panel**
-2. **Iniciar MySQL** (clic en "Start" junto a MySQL)
-3. Esperar a que el botón se ponga verde con texto "Running"
+**Levantar contenedor de MySQL:**
+
+```bash
+docker run -d \
+  --name mysql-metamapa \
+  -e MYSQL_ROOT_PASSWORD=root \
+  -e MYSQL_DATABASE=metamapa \
+  -p 3306:3306 \
+  mysql:8.0
+```
+
+**Verificar que el contenedor esté corriendo:**
+
+```bash
+docker ps
+# Debe aparecer 'mysql-metamapa' en la lista
+```
 
 **Configuración de Base de Datos:**
 - **Host:** `localhost:3306`
 - **Usuario:** `root`
-- **Contraseña:** *(vacía - sin contraseña)*
+- **Contraseña:** `root`
 - **Bases de datos:** Se crean automáticamente al iniciar los servicios:
   - `agregador_db`
   - `estatica_db`
   - `estadistica_db`
   - `gestionUsuario_db`
+
+**Comandos útiles de Docker:**
+
+```bash
+# Detener MySQL
+docker stop mysql-metamapa
+
+# Iniciar MySQL (si ya existe el contenedor)
+docker start mysql-metamapa
+
+# Ver logs
+docker logs mysql-metamapa
+
+# Eliminar contenedor (si querés empezar de cero)
+docker rm -f mysql-metamapa
+```
 
 ### 3️⃣ Configurar Terminal en VS Code (Opcional)
 
@@ -98,12 +133,19 @@ Si usás Windows, configurá Git Bash con Java 17:
 Los servicios deben levantarse en este orden específico:
 
 ```
-1. MySQL (XAMPP)
-2. servicio-fuente-estatica (puerto 8080)
-3. servicio-agregador (puerto 8083)
-4. servicio-estadistica (puerto 8084)
-5. gestion-de-usuarios (puerto 8086)
-6. Interfaz_grafica (puerto 8085)
+1. MySQL (Docker) - puerto 3306
+2. servicio-fuente-estatica - puerto 8080
+3. servicio-agregador - puerto 8083
+4. servicio-estadistica - puerto 8084
+5. gestion-de-usuarios - puerto 8086
+6. Interfaz_grafica - puerto 8085
+```
+
+**Paso 0: Levantar MySQL con Docker**
+
+```bash
+docker start mysql-metamapa
+# Si es la primera vez, usar el comando docker run del paso anterior
 ```
 
 ### Comandos para Levantar Servicios
@@ -231,6 +273,11 @@ Usuario logueado
 
 ### ✅ Completado
 
+- **Infraestructura:**
+  - ✅ MySQL 8.0 en Docker
+  - ✅ Microservicios Spring Boot
+  - ✅ Arquitectura distribuida con múltiples bases de datos
+
 - **Microservicios Base:**
   - ✅ servicio-fuente-estatica (puerto 8080)
   - ✅ servicio-agregador (puerto 8083)
@@ -240,70 +287,41 @@ Usuario logueado
 
 - **Funcionalidades:**
   - ✅ Registro de usuarios
-  - ✅ Login/logout con Spring Security
-  - ✅ Gestión de colecciones (CRUD)
-  - ✅ Visualización de hechos históricos
-  - ✅ **Paso 2: Solicitudes de eliminación de hechos**
+  - ✅ Login/logout con Spring Security + JWT
+  - ✅ Gestión de colecciones (CRUD completo)
+  - ✅ Visualización de hechos históricos con filtros
+  - ✅ Solicitudes de eliminación de hechos
   - ✅ Panel de administración para solicitudes
+  - ✅ Sistema de roles (ADMIN, CONTRIBUYENTE)
+  - ✅ Estadísticas de categorías y colecciones
+  - ✅ Importación automática de hechos desde CSV
 
-### 🚧 En Desarrollo (Fuente Estática)
+### 🚧 Fuente Estática - Estado Actual
 
-Para completar la **Fuente de Datos Estática** falta:
+#### ✅ Completado
+- ✅ API REST funcional con endpoints CRUD
+- ✅ Importación automática de CSV al iniciar
+- ✅ Base de datos `estatica_db` configurada
+- ✅ Modelo de datos de Hecho con categorías y ubicación
+- ✅ Repositorio JPA para gestión de datos
+- ✅ Integración básica con servicio-agregador
 
-#### 1️⃣ Carga de Datos CSV
+#### 📝 Pendiente
+- 📝 Ampliar archivo CSV con más hechos históricos de Argentina
+- 📝 Mejorar validaciones en importación CSV
+- 📝 Tests de integración para endpoints REST
+- 📝 Documentación de API con Swagger
+
+#### 💡 Formato CSV Actual
 **Archivo:** `servicio-fuente-estatica/src/main/resources/hechos.csv`
 
-Actualmente el CSV está vacío o con pocos datos. Se necesita:
-- Cargar hechos históricos reales de Argentina
-- Formato CSV correcto con columnas:
-  - `titulo`
-  - `descripcion`
-  - `fecha_acontecimiento` (formato: YYYY-MM-DD)
-  - `provincia`
-  - `categoria`
-  - `latitud`
-  - `longitud`
-
-**Ejemplo de contenido necesario:**
 ```csv
 titulo,descripcion,fecha_acontecimiento,provincia,categoria,latitud,longitud
 Revolución de Mayo,Inicio del proceso independentista argentino,1810-05-25,Ciudad Autónoma de Buenos Aires,POLITICO,-34.603722,-58.381592
 Declaración de Independencia,Declaración de la independencia de las Provincias Unidas,1816-07-09,Tucumán,POLITICO,-26.808285,-65.217590
 ```
 
-#### 2️⃣ Importación Automática al Iniciar
-**Clase:** `servicio-fuente-estatica/.../DataLoader.java`
-
-El servicio debe:
-- Leer el archivo CSV al iniciar
-- Parsear datos correctamente
-- Insertar hechos en la base de datos `estatica_db`
-- Manejar errores de formato
-- Log de hechos importados
-
-#### 3️⃣ API REST Funcional
-**Endpoints necesarios:**
-
-```
-GET /estatica/hechos              → Listar todos los hechos
-GET /estatica/hechos/{id}         → Obtener un hecho por ID
-GET /estatica/hechos/filtrar?categoria=POLITICO&provincia=Buenos+Aires
-POST /estatica/hechos             → Crear nuevo hecho (Admin)
-PUT /estatica/hechos/{id}         → Actualizar hecho (Admin)
-DELETE /estatica/hechos/{id}      → Eliminar hecho (Admin)
-```
-
-#### 4️⃣ Integración con Agregador
-**servicio-agregador** debe:
-- Consultar periódicamente a servicio-fuente-estatica
-- Sincronizar hechos con su propia base de datos
-- Aplicar algoritmos de consenso/deduplicación
-- Mostrar hechos estáticos en la interfaz gráfica
-
-#### 5️⃣ Testing
-- Unit tests para CriterioFecha (✅ YA CORREGIDO)
-- Integration tests para endpoints REST
-- Tests de carga de CSV
+**Categorías disponibles:** POLITICO, SOCIAL, CULTURAL, ECONOMICO, DEPORTIVO
 
 ---
 
@@ -326,7 +344,7 @@ Estas funcionalidades están fuera del alcance del TP actual:
 ```
 ┌─────────────────────────────────────────────────────┐
 │         Interfaz_grafica (Puerto 8085)              │
-│              Spring Boot + Thymeleaf                │
+│         Spring Boot + Thymeleaf + Security          │
 └────────────────────┬────────────────────────────────┘
                      │
         ┌────────────┼────────────┬──────────────┐
@@ -335,14 +353,16 @@ Estas funcionalidades están fuera del alcance del TP actual:
 ┌──────────────┐ ┌───────────┐ ┌─────────┐ ┌──────────┐
 │  Agregador   │ │Estadística│ │Usuarios │ │F.Estática│
 │  (8083)      │ │  (8084)   │ │ (8086)  │ │ (8080)   │
+│  + Hechos    │ │  + Stats  │ │  + JWT  │ │  + CSV   │
 └──────┬───────┘ └─────┬─────┘ └────┬────┘ └────┬─────┘
        │               │            │           │
        └───────────────┴────────────┴───────────┘
                        │
                        ▼
               ┌─────────────────┐
-              │  MySQL (XAMPP)  │
-              │  localhost:3306 │
+              │ MySQL (Docker)  │
+              │ localhost:3306  │
+              │   4 databases   │
               └─────────────────┘
 ```
 
@@ -362,13 +382,22 @@ gestionUsuario_db    (Usuarios, roles, permisos)
 
 ### ❌ Error: "Connection refused: no further information"
 
-**Causa:** MySQL no está corriendo
+**Causa:** MySQL (Docker) no está corriendo
 
 **Solución:**
-1. Abrir XAMPP Control Panel
-2. Hacer clic en "Start" junto a MySQL
-3. Esperar a que aparezca en verde "Running"
-4. Reiniciar el servicio que falló
+1. Verificar contenedores corriendo:
+   ```bash
+   docker ps
+   ```
+2. Si `mysql-metamapa` no aparece, iniciarlo:
+   ```bash
+   docker start mysql-metamapa
+   ```
+3. Si el contenedor no existe, crearlo:
+   ```bash
+   docker run -d --name mysql-metamapa -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql:8.0
+   ```
+4. Reiniciar el servicio Spring Boot que falló
 
 ---
 
@@ -411,6 +440,40 @@ taskkill /PID <numero_pid> /F
 **Causa:** Maven Compiler Plugin incompatible con Java 25
 
 **Solución:** Usar Java 17 (ya configurado en todos los POMs)
+
+---
+
+### ❌ Contenedor Docker no inicia
+
+**Causa:** Puerto 3306 ya está en uso
+
+**Solución:**
+```bash
+# Ver qué está usando el puerto 3306
+netstat -ano | findstr :3306
+
+# Matar el proceso si es necesario
+taskkill /PID <numero_pid> /F
+
+# O usar otro puerto para Docker
+docker run -d --name mysql-metamapa -e MYSQL_ROOT_PASSWORD=root -p 3307:3306 mysql:8.0
+# Recordar actualizar application.properties con el nuevo puerto
+```
+
+---
+
+## 🔧 Mejoras Recientes
+
+### Limpieza de Código
+- ✅ Eliminadas todas las importaciones sin uso
+- ✅ Removidas variables no utilizadas
+- ✅ Eliminadas anotaciones `@Autowired` innecesarias (usando `@RequiredArgsConstructor` de Lombok)
+- ✅ Código más limpio y mantenible
+
+### Migración a Docker
+- ✅ MySQL ahora corre en contenedor Docker
+- ✅ Configuración más portable y fácil de replicar
+- ✅ Sin dependencia de XAMPP
 
 ---
 
