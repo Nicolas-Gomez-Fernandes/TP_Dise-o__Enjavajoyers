@@ -13,17 +13,9 @@
     <section class="py-5 bg-light text-center">
         <div class="container">
             <h1 class="fw-bold mb-3" th:text="${titulo}">Colecciones disponibles</h1>
-            <p class="text-muted mb-4 fs-5">Explorá las colecciones colaborativas del mapa</p>
+            <p class="text-muted mb-4 fs-5">Explora las colecciones colaborativas del mapa</p>
 
-            <!-- Botones de vista -->
-            <div class="d-flex justify-content-center gap-2 mb-4">
-                <button id="btnGrid" class="btn btn-outline-primary active">
-                    <i class="bi bi-grid-3x3-gap-fill me-1"></i> Vista Tarjetas
-                </button>
-                <button id="btnList" class="btn btn-outline-secondary">
-                    <i class="bi bi-list-ul me-1"></i> Vista Lista
-                </button>
-            </div>
+
 
             <!-- Botón Crear Nueva Colección -->
             <div sec:authorize="hasRole('ADMIN')" class="d-flex justify-content-center mb-4">

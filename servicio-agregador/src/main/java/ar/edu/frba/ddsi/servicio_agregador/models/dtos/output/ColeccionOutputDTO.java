@@ -12,6 +12,7 @@ public class ColeccionOutputDTO {
   private String id;
   private String titulo;
   private String descripcion;
+  private String imagen_url;
   private List<OrigenFuente> fuentes;
   //private List<HechoOutputDTO> hechos;
 }

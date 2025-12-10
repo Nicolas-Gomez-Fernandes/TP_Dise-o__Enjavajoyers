@@ -24,9 +24,13 @@ public class HechoOutputDTO {
   private String descripcion;
   private String categoria;
   private UbicacionDto ubicacion;
+  private Double latitud;  // Para compatibilidad con el mapa
+  private Double longitud; // Para compatibilidad con el mapa
   private LocalDate fecha;
   private LocalDateTime fechaCreacion;
   private LocalDateTime fechaAcontecimiento;
   private List<MultimediaResponseDTO> archivosMultimedia;
   private List<String> etiquetas;
+  private Long coleccionId;
+  private String coleccionNombre;
 }

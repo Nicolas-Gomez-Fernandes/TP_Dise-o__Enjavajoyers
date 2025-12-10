@@ -1,5 +1,6 @@
 package ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.controllers;
 
+import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.ColeccionDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.PageColeccionDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.ColeccionService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -44,6 +45,17 @@ public class ColeccionController {
     model.addAttribute("page", pageResponse);
 
     return "colecciones/lista";
+  }
+
+  @GetMapping("/{id}")
+  @PreAuthorize("permitAll()")
+  public String detalleColeccion(@org.springframework.web.bind.annotation.PathVariable Long id, Model model) {
+    ColeccionDTO coleccion = this.coleccionService.obtenerColeccionPorId(id);
+    var hechos = this.coleccionService.obtenerHechosDeColeccion(id);
+    model.addAttribute("titulo", "Detalle de Colección: " + coleccion.getTitulo());
+    model.addAttribute("coleccion", coleccion);
+    model.addAttribute("hechos", hechos);
+    return "colecciones/detalle";
   }
 
 }

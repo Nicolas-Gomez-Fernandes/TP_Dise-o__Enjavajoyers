@@ -10,6 +10,7 @@ public class ManualColeccionMapper {
     dto.setId(coleccion.getId().toString());
     dto.setTitulo(coleccion.getTitulo());
     dto.setDescripcion(coleccion.getDescripcion());
+    dto.setImagen_url(coleccion.getImagenUrl());
     dto.setFuentes(coleccion.getFuentes());
     /*if (coleccion.getHechos() != null) {
       dto.setHechos(coleccion.getHechos().stream()

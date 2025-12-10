@@ -87,4 +87,22 @@ public class HechoController {
         }
     }
 
+    @GetMapping("/mapa")
+    public String mostrarMapa(Model model) {
+        model.addAttribute("titulo", "Mapa de Hechos");
+        return "hechos/mapa";
+    }
+
+    @GetMapping("/api/list")
+    @ResponseBody
+    public ResponseEntity<?> listarHechosApi() {
+        try {
+            var hechos = hechosService.obtenerTodosLosHechos();
+            return ResponseEntity.ok(hechos);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                .body(java.util.Map.of("error", "Error al cargar los hechos: " + e.getMessage()));
+        }
+    }
+
 }

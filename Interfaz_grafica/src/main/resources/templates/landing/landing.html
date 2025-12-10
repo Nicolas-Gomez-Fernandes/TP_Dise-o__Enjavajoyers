@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html th:replace="~{layout/base :: html}" lang="es" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{layout/base :: html}" lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <th:block th:fragment="extraCss">
@@ -16,7 +17,7 @@
         <h1>MetaMapa</h1>
         <p>Mapeamos en conjunto eventos relevantes para prevenir, visibilizar y actuar.</p>
         <a th:href="@{/hechos}" class="btn btn-primary">Visualizar Hechos</a>
-        <a th:href="@{/usuarios/register}" class="btn btn-secondary">Registrarse</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/usuarios/register}" class="btn btn-secondary">Registrarse</a>
     </section>
 
     <!-- Propósito y Objetivos -->
@@ -45,12 +46,12 @@
         <div class="cards">
 
             <div class="card" th:each="coleccion : ${coleccionesDestacadas}">
-                <img th:if="${tieneImagen} == true" th:src="${coleccion.imagen_url}"
-                     th:alt="${coleccion.nombre}">
-                <img th:if="${tieneImagen} == false" th:src="@{/../static/images/coleccion-no-image.jpg}" alt="Sin imagen">
+                <img th:if="${coleccion.imagen_url != null}" th:src="${coleccion.imagen_url}"
+                     th:alt="${coleccion.titulo}">
+                <img th:if="${coleccion.imagen_url == null}" th:src="@{/../static/images/coleccion-no-image.jpg}" alt="Sin imagen">
                 <div class="card-content">
-                    <h3 th:text="${coleccion.titulo}">Titulo colección</h3>
-                    <a th:href="@{'/colecciones/' + ${coleccion.id}}" class="btn-small">Ver colección</a>
+                    <h3 th:text="${coleccion.titulo}">Titulo coleccion</h3>
+                    <a th:href="@{'/colecciones/' + ${coleccion.id}}" class="btn-small">Ver coleccion</a>
                 </div>
             </div>
 
@@ -83,7 +84,8 @@
     <section class="cta">
         <h2>Tu aporte es clave</h2>
         <p>Ayuda a construir un mapa más preciso y útil para todos. Subir un hecho es rápido y no requiere que compartas tu identidad.</p>
-        <a th:href="@{/usuarios/register}" class="btn btn-primary">Registrarse</a> |
+        <a sec:authorize="isAnonymous()" th:href="@{/usuarios/register}" class="btn btn-primary">Registrarse</a>
+        <span sec:authorize="isAnonymous()"> | </span>
         <a th:href="@{/hechos}" class="btn btn-primary">Ver Hechos</a>
     </section>
 

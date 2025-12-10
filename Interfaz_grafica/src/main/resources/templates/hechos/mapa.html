@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMapa - Mapa de Hechos</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/mapa.css}">
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="~{layout/fragments/header2 :: header2}"></div>
+
+    <div class="container my-4">
+        <h1><i class="bi bi-map"></i> Mapa de Hechos Históricos</h1>
+        <p class="subtitle">Explora los hechos históricos en el mapa interactivo</p>
+
+        <div class="row">
+            <!-- Panel de filtros lateral -->
+            <div class="col-md-3 mb-4">
+                <div class="filters-panel">
+                    <h4 class="mb-3"><i class="bi bi-funnel"></i> Filtros</h4>
+                    
+                    <!-- Búsqueda por texto -->
+                    <div class="mb-3">
+                        <label class="form-label">Buscar</label>
+                        <input type="text" id="searchInput" class="form-control" placeholder="Buscar hechos...">
+                    </div>
+
+                    <!-- Filtro por categoría -->
+                    <div class="mb-3">
+                        <label class="form-label">Categoría</label>
+                        <select id="categoriaFilter" class="form-select">
+                            <option value="">Todas las categorías</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro por fecha -->
+                    <div class="mb-3">
+                        <label class="form-label">Fecha desde</label>
+                        <input type="date" id="fechaDesde" class="form-control">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Fecha hasta</label>
+                        <input type="date" id="fechaHasta" class="form-control">
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="d-grid gap-2">
+                        <button id="aplicarFiltros" class="btn btn-primary">
+                            <i class="bi bi-search"></i> Aplicar Filtros
+                        </button>
+                        <button id="limpiarFiltros" class="btn btn-outline-secondary">
+                            <i class="bi bi-x-circle"></i> Limpiar
+                        </button>
+                    </div>
+
+                    <!-- Estadísticas -->
+                    <div class="stats-box mt-4">
+                        <h5><i class="bi bi-graph-up"></i> Estadísticas</h5>
+                        <div class="stat-item">
+                            <span class="stat-label">Hechos mostrados:</span>
+                            <span class="stat-value" id="hechosCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Categorías:</span>
+                            <span class="stat-value" id="categoriasCount">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mapa -->
+            <div class="col-md-9">
+                <div class="map-wrapper">
+                    <div id="map"></div>
+                    
+                    <!-- Leyenda -->
+                    <div class="map-legend">
+                        <h6><i class="bi bi-info-circle"></i> Leyenda</h6>
+                        <div class="legend-item">
+                            <span class="legend-marker" style="background-color: #e74c3c !important; display: inline-block; width: 20px; height: 20px;"></span>
+                            <span>Incendios</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-marker" style="background-color: #3498db !important; display: inline-block; width: 20px; height: 20px;"></span>
+                            <span>Inundaciones</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-marker" style="background-color: #2ecc71 !important; display: inline-block; width: 20px; height: 20px;"></span>
+                            <span>Deforestación</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-marker" style="background-color: #f39c12 !important; display: inline-block; width: 20px; height: 20px;"></span>
+                            <span>Contaminación</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-marker" style="background-color: #9b59b6 !important; display: inline-block; width: 20px; height: 20px;"></span>
+                            <span>Desapariciones</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-marker" style="background-color: #34495e !important; display: inline-block; width: 20px; height: 20px;"></span>
+                            <span>Otros</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="spinner-overlay" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    
+    <!-- Custom JS -->
+    <script th:src="@{/js/mapa.js}"></script>
+</body>
+</html>

@@ -156,37 +156,43 @@ footer a {
 
 /*header2*/
 .navbar-custom {
-    background-color: #f8f9fa !important; /* Fondo claro como en la imagen */
+    background-color: #ffffff !important; /* Fondo blanco */
     border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .navbar-custom .navbar-brand {
-    color: #212529 !important; /* Texto oscuro para el brand */
+    color: #212529 !important; /* Texto negro para el brand */
     font-weight: bold;
 }
 .navbar-custom .nav-link {
-    color: #495057 !important; /* Texto gris para los links */
+    color: #212529 !important; /* Texto negro para los links */
 }
 .navbar-custom .nav-link:hover {
-    color: #007bff !important; /* Azul al hover */
+    color: #3b82f6 !important; /* Azul al hover */
 }
-.navbar-custom .btn-login {
-    background-color: #007bff !important; /* Azul para el botón */
+.navbar-custom .btn-login, .navbar-custom .btn-primary {
+    background: #3b82f6 !important; /* Azul sólido */
     color: white !important;
     border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
 }
-.navbar-custom .btn-login:hover {
-    background-color: #0056b3 !important; /* Azul más oscuro al hover */
+.navbar-custom .btn-login:hover, .navbar-custom .btn-primary:hover {
+    background: #2563eb !important; /* Azul más oscuro al hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 .navbar-custom .navbar-toggler {
-    border-color: #adb5bd;
+    border-color: #212529;
+}
+
+.navbar-custom .navbar-toggler-icon {
+    filter: invert(1);
 }
 
 /*deberia solucionar el dropdown de la navbar*/
-.navbar-custom .nav-link {
-    color: #495057 !important;
-}
 .navbar-custom .dropdown-toggle.text-light {
-    color: #495057 !important;
+    color: #212529 !important; /* Texto negro */
 }
 
 /*DROPDOWN*/
@@ -210,5 +216,11 @@ footer a {
 }
 .navbar-custom .dropdown-item:hover {
     background-color: #f8f9fa;
-    color: #007bff;
+    color: #667eea; /* Violeta al hover */
+}
+
+/* Iconos en el menú */
+.navbar-custom .nav-link i,
+.navbar-custom .dropdown-item i {
+    color: inherit;
 }

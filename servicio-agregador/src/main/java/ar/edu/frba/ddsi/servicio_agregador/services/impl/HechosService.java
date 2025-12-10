@@ -233,6 +233,8 @@ public class HechosService implements IHechosService {
         .descripcion(hecho.getDescripcion())
         .categoria(hecho.getCategoria().getNombre())
         .ubicacion(ubicacionDto)
+        .latitud(hecho.getUbicacion().getLatitud())   // Agregado para compatibilidad con mapa
+        .longitud(hecho.getUbicacion().getLongitud()) // Agregado para compatibilidad con mapa
         .fechaCreacion(hecho.getFechaCreacion())
         .fechaAcontecimiento(hecho.getFechaAcontecimiento())
         .etiquetas(hecho.getEtiquetas())

@@ -1,0 +1,101 @@
+version: '3.8'
+
+services:
+  # --- 1. Base de Datos Compartida ---
+  mysql-db:
+    image: mysql:8
+    container_name: mysql-tp
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_DATABASE: agregador_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # --- 2. Fuente Estática (Puerto 8080) ---
+  fuente-estatica:
+    build: ./servicio-fuente-estatica
+    container_name: fuente-estatica
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/estatica_db?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "123456"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+
+  # --- 3. Servicio Agregador (Puerto 8083) ---
+  agregador:
+    build: ./servicio-agregador
+    container_name: agregador
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/agregador_db?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "123456"
+      APP_BASE-URL-FUENTEESTATICA: http://fuente-estatica:8080/estatica
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      fuente-estatica:
+        condition: service_started
+
+  # --- 4. Servicio Estadística (Puerto 8084) ---
+  estadistica:
+    build: ./servicio-estadistica
+    container_name: estadistica
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/estadistica_db?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "123456"
+      APP_BASE-URL-FUENTEAGREGADOR: http://agregador:8083/agregador
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      agregador:
+        condition: service_started
+
+  # --- 5. Gestión de Usuarios (Puerto 8086) ---
+  usuarios:
+    build: ./gestion-de-usuarios
+    container_name: usuarios
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/gestionUsuario_db?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: "123456"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+
+  # --- 6. Interfaz Gráfica (Puerto 8085 - Entrá por acá) ---
+  interfaz:
+    build: ./Interfaz_grafica
+    container_name: interfaz
+    ports:
+      - "8085:8085"
+    environment:
+      AUTH_SERVICE_URL: http://usuarios:8086
+      USUARIOS_SERVICE_URL: http://usuarios:8086
+      AGREGADOR_SERVICE_URL: http://agregador:8083/agregador
+      APP_BASE-URL-AGREGADOR: http://agregador:8083/agregador
+      HECHOS_SERVICE_URL: http://agregador:8083/agregador
+      APP_BASE-URL-ESTADISTICA: http://estadistica:8084
+    depends_on:
+      - agregador
+      - usuarios
+      - estadistica
+
+volumes:
+  db_data:

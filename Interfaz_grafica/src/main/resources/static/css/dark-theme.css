@@ -1,0 +1,16 @@
+/* Tema oscuro global para todas las páginas */
+body {
+    background: #0F172A !important;
+    min-height: 100vh;
+}
+
+/* Headers blancos con texto negro */
+header, .navbar, .navbar-custom {
+    background-color: #ffffff !important;
+    color: #000 !important;
+}
+
+header h1, header h2, header h3, 
+.navbar h1, .navbar h2, .navbar h3 {
+    color: #000 !important;
+}

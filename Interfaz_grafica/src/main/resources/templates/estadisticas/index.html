@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMapa - Estadísticas</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/estadisticas.css}">
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="~{layout/fragments/header2 :: header2}"></div>
+
+    <div class="container mt-5 pt-4">
+        <!-- Título -->
+        <div class="page-header">
+            <h1><i class="bi bi-graph-up-arrow"></i> Estadísticas de MetaMapa</h1>
+            <p class="text-muted">Análisis y visualización de datos sobre hechos históricos</p>
+        </div>
+
+        <!-- Tarjetas de resumen -->
+        <div class="row mb-4">
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="stat-card stat-card-primary">
+                    <div class="stat-icon">
+                        <i class="bi bi-file-earmark-text"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalHechos">0</h3>
+                        <p>Total Hechos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="stat-card stat-card-success">
+                    <div class="stat-icon">
+                        <i class="bi bi-tags"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalCategorias">0</h3>
+                        <p>Categorías</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="stat-card stat-card-warning">
+                    <div class="stat-icon">
+                        <i class="bi bi-collection"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalColecciones">0</h3>
+                        <p>Colecciones</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="stat-card stat-card-danger">
+                    <div class="stat-icon">
+                        <i class="bi bi-geo-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalProvincias">0</h3>
+                        <p>Provincias</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico de Categorías Centrado -->
+        <div class="row mb-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="chart-container">
+                    <h4 class="chart-title text-center">
+                        <i class="bi bi-pie-chart"></i> Distribución de Hechos por Categoría
+                    </h4>
+                    <canvas id="categoriaChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Gráfico de Línea de Tiempo -->
+            <div class="col-lg-6 mb-4" style="display: none;">
+                <div class="chart-container">
+                    <h4 class="chart-title">
+                        <i class="bi bi-graph-up"></i> Hechos por Mes
+                    </h4>
+                    <canvas id="timelineChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4" style="display: none;">
+            <!-- Gráfico de Top Provincias -->
+            <div class="col-lg-6 mb-4">
+                <div class="chart-container">
+                    <h4 class="chart-title">
+                        <i class="bi bi-bar-chart"></i> Top 10 Provincias
+                    </h4>
+                    <canvas id="provinciaChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Gráfico de Colecciones -->
+            <div class="col-lg-6 mb-4">
+                <div class="chart-container">
+                    <h4 class="chart-title">
+                        <i class="bi bi-collection-fill"></i> Hechos por Colección
+                    </h4>
+                    <canvas id="coleccionChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Estadísticas por Categoría -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="chart-container">
+                    <h4 class="chart-title text-center mb-4">
+                        <i class="bi bi-table"></i> Detalle de Estadísticas por Categoría
+                    </h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="categoriaTable">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>Categoría</th>
+                                    <th>Total Hechos</th>
+                                    <th>Provincia Principal</th>
+                                    <th>Cantidad en Provincia</th>
+                                    <th>Hora Pico</th>
+                                </tr>
+                            </thead>
+                            <tbody id="categoriaTableBody">
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Cargando...</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de exportación -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="export-section text-center">
+                    <h4><i class="bi bi-download"></i> Exportar Datos</h4>
+                    <p class="text-muted mb-4">Descarga las estadísticas en formato CSV</p>
+                    <div class="btn-group">
+                        <button id="exportCategorias" class="btn btn-outline-primary">
+                            <i class="bi bi-file-earmark-spreadsheet"></i> Exportar Categorías
+                        </button>
+                        <button id="exportColecciones" class="btn btn-outline-success">
+                            <i class="bi bi-file-earmark-spreadsheet"></i> Exportar Colecciones
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script th:src="@{/js/estadisticas.js}"></script>
+</body>
+</html>

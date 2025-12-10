@@ -1,0 +1,428 @@
+.navbar-custom {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-custom .navbar-brand {
+    color: #212529 !important;
+    font-weight: bold;
+}
+
+.navbar-custom .nav-link {
+    color: #212529 !important;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #3b82f6 !important;
+}
+
+.navbar-custom .dropdown-toggle {
+    color: #212529 !important;
+}
+
+.navbar-custom .btn-primary {
+    background: #3b82f6 !important;
+    color: white !important;
+    border: none;
+    border-radius: 25px;
+}
+
+.navbar-custom .btn-primary:hover {
+    background: #2563eb !important;
+    transform: translateY(-2px);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #0F172A;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    padding-top: 0;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    padding: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 1400px;
+}
+
+h1 {
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+/* Panel de filtros */
+.filters-panel {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e0e0e0;
+}
+
+.filters-panel h4 {
+    color: #1e40af;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+/* Inputs y selects */
+.form-label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+}
+
+/* Botones */
+.btn-primary {
+    background: #3b82f6;
+    border: none;
+    border-radius: 25px;
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #6a4191 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-outline-secondary {
+    border-radius: 25px;
+    border-color: #dee2e6;
+    color: #6c757d;
+    font-weight: 500;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    background: #6c757d;
+    border-color: #6c757d;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Estadísticas */
+.stats-box {
+    background: #3b82f6;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    margin-top: 20px;
+}
+
+.stats-box h5 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* Contenedor del mapa */
+.map-wrapper {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e0e0e0;
+}
+
+#map {
+    height: 600px;
+    width: 100%;
+    z-index: 1;
+    border-radius: 12px;
+}
+
+/* Leyenda del mapa */
+.map-legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+    min-width: 200px;
+}
+
+.map-legend h6 {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+/* Items de la leyenda con círculos de colores */
+.legend-item {
+    display: flex !important;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.legend-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Círculos de colores en la leyenda - IMPORTANTE: deben verse los colores */
+.legend-marker {
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50% !important;
+    margin-right: 10px !important;
+    flex-shrink: 0 !important;
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3) !important;
+    display: block !important;
+    min-width: 18px !important;
+    min-height: 18px !important;
+}
+
+/* Estilos personalizados para los popups de Leaflet */
+.leaflet-popup-content-wrapper {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.leaflet-popup-content {
+    margin: 15px;
+    min-width: 250px;
+}
+
+.popup-content h5 {
+    color: #1e40af;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.popup-content .popup-category {
+    display: inline-block;
+    background: #3b82f6;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.popup-content .popup-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.popup-content .popup-date {
+    color: #999;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.popup-content .popup-date i {
+    margin-right: 5px;
+}
+
+.popup-content .popup-location {
+    color: #999;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.popup-content .popup-location i {
+    margin-right: 5px;
+}
+
+.popup-content .popup-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.popup-content .btn-sm {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Botón "Ver Detalle" en blanco con borde azul */
+.popup-content .btn-primary {
+    background: white !important;
+    color: #3b82f6 !important;
+    border: 2px solid #3b82f6 !important;
+}
+
+.popup-content .btn-primary:hover {
+    background: #3b82f6 !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.popup-content .btn-outline-secondary {
+    border-color: #dee2e6;
+    color: #6c757d;
+}
+
+.popup-content .btn-outline-secondary:hover {
+    background: #6c757d;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Loading Spinner */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner-border {
+    width: 4rem;
+    height: 4rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    #map {
+        height: 400px;
+    }
+
+    .map-legend {
+        bottom: 10px;
+        right: 10px;
+        font-size: 0.8rem;
+        padding: 10px;
+        min-width: 150px;
+    }
+
+    .legend-item {
+        font-size: 0.75rem;
+        margin-bottom: 6px;
+    }
+
+    .legend-marker {
+        width: 12px;
+        height: 12px;
+    }
+
+    .filters-panel {
+        margin-bottom: 20px;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.filters-panel {
+    animation: fadeIn 0.5s ease;
+}
+
+.map-legend {
+    animation: fadeIn 0.5s ease 0.3s backwards;
+}
+
+/* Estilos para los marcadores del mapa */
+.custom-marker {
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+}
+
+.custom-marker:hover {
+    transform: scale(1.2);
+    z-index: 1000 !important;
+}

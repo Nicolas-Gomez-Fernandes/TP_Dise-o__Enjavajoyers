@@ -3,6 +3,7 @@ package ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.gestores;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.PageColeccionResponseDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.ColeccionDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.colecciones.PageColeccionDTO;
+import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.dtos.hechos.HechoDTO;
 import ar.edu.frba.ddsi.interfaz_grafica.Interfaz_grafica.services.internal.WebApiCallerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,5 +62,11 @@ public class GestionColeccionesService {
     String url = coleccionesAgregadorServiceUrl + "/" + id;
     ColeccionDTO response = webApiCallerService.getNoAuth(url, ColeccionDTO.class);
     return response;
+  }
+
+  public List<HechoDTO> obtenerHechosDeColeccion(Long coleccionId) {
+    String url = coleccionesAgregadorServiceUrl + "/" + coleccionId + "/hechos";
+    List<HechoDTO> response = webApiCallerService.getListNoAuth(url, HechoDTO.class);
+    return response != null ? response : List.of();
   }
 }

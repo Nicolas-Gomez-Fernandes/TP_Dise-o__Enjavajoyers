@@ -29,22 +29,22 @@ public class EstadisticaController {
         this.estadisticasExportService = estadisticasExportService;
     }
 
-    @PostMapping("/colecciones")
+    @GetMapping("/colecciones")
     public ResponseEntity<List<EstadisticaColeccionOutputDTO>> estadisticaColeccion(@RequestParam(required = false) Integer size) {
         return ResponseEntity.ok(this.estadisticasService.estadisticaColeccion(size));
     }
 
-    @PostMapping("/solicitudesSpam")
+    @GetMapping("/solicitudesSpam")
     public ResponseEntity<EstadisticaSolicitudDeEliminacionSpamOutPutDTO> estadisticaSolicitudesSpam() {
         return ResponseEntity.ok(this.estadisticasService.estadisticaSolicitudesSpam());
     }
 
-    @PostMapping("/categoria/hechos")
+    @GetMapping("/categoria/hechos")
     public ResponseEntity<EstadisticaHechosCategoriaOutPutDTO> estadisticaCategoriaConMasHechos() {
         return ResponseEntity.ok(this.estadisticasService.estadisticaCategoriaConMasHechos());
     }
 
-    @PostMapping("/categorias")
+    @GetMapping("/categorias")
     public ResponseEntity<List<EstadisticaCategoriaOutPutDTO>> estadisticaCategoria(@RequestParam(required = false) Integer size) {
         return ResponseEntity.ok(this.estadisticasService.estadisticaCategoria(size));
     }
