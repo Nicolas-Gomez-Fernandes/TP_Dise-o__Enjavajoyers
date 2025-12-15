@@ -389,28 +389,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Exportar categorías
-    document.getElementById('exportCategorias').addEventListener('click', async function() {
-        try {
-            console.log('📥 Exportando categorías...');
-            window.location.href = 'http://localhost:8084/estadisticas/exportar/categorias';
-        } catch (error) {
-            console.error('❌ Error al exportar categorías:', error);
-            alert('Error al exportar categorías');
-        }
-    });
-
-    // Exportar colecciones
-    document.getElementById('exportColecciones').addEventListener('click', async function() {
-        try {
-            console.log('📥 Exportando colecciones...');
-            window.location.href = 'http://localhost:8084/estadisticas/exportar/colecciones';
-        } catch (error) {
-            console.error('❌ Error al exportar colecciones:', error);
-            alert('Error al exportar colecciones');
-        }
-    });
-
     // Inicializar
     cargarEstadisticas();
 });

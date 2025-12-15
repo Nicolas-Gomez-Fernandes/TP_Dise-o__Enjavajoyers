@@ -65,7 +65,7 @@ public class GestionColeccionesService {
   }
 
   public List<HechoDTO> obtenerHechosDeColeccion(Long coleccionId) {
-    String url = coleccionesAgregadorServiceUrl + "/" + coleccionId + "/hechos";
+    String url = coleccionesAgregadorServiceUrl + "/" + coleccionId + "/hechos?navegacionCurada=false";
     List<HechoDTO> response = webApiCallerService.getListNoAuth(url, HechoDTO.class);
     return response != null ? response : List.of();
   }

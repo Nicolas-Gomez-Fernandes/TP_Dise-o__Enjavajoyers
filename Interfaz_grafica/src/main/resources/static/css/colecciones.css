@@ -1,3 +1,26 @@
+/* Forzar header blanco en todas las páginas de colecciones */
+.navbar-custom,
+header.navbar-custom,
+.navbar.navbar-custom {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    background-image: none !important;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link,
+.navbar-custom .navbar-nav .nav-link {
+    color: #212529 !important;
+}
+
+.navbar-custom .navbar-toggler {
+    border-color: #212529 !important;
+}
+
+.navbar-custom .navbar-toggler-icon {
+    filter: invert(1) !important;
+}
+
 /* Fondo oscuro modo dashboard */
 body {
     background: #0F172A;

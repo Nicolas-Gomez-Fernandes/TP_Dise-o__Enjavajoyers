@@ -15,6 +15,25 @@
             min-height: 100vh;
         }
         
+        /* Forzar header blanco con máxima prioridad */
+        .navbar-custom,
+        header.navbar-custom,
+        .navbar.navbar-custom {
+            background-color: #ffffff !important;
+            background: #ffffff !important;
+            background-image: none !important;
+        }
+        
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #212529 !important;
+        }
+        
+        .navbar-custom .navbar-toggler {
+            border-color: #212529 !important;
+        }
+        
         .collection-header {
             background: white;
             border-radius: 15px;
@@ -36,7 +55,7 @@
         }
         
         .collection-title {
-            color: #667eea;
+            color: #1e40af;
             font-weight: bold;
             margin-bottom: 1rem;
         }
@@ -160,13 +179,16 @@
 </head>
 
 <body>
-    <div th:replace="~{layout/fragments/header2 :: header2}"></div>
+    <!-- Header removido según solicitud del usuario -->
 
     <div class="container mt-4 mb-5">
         <!-- Botón volver -->
         <div class="mb-3">
             <a th:href="@{/colecciones}" class="btn btn-back">
                 <i class="bi bi-arrow-left"></i> Volver a Colecciones
+            </a>
+            <a th:href="@{/hechos/mapa}" class="btn btn-back ms-2">
+                <i class="bi bi-map"></i> Ver Mapa General
             </a>
         </div>
 
@@ -180,14 +202,17 @@
                          onerror="this.src='https://via.placeholder.com/400x300?text=Coleccion'">
                 </div>
                 <div class="col-md-8 collection-info">
-                    <h1 class="collection-title" th:text="${coleccion.titulo}">Título de la Colección</h1>
+                    <h1 class="collection-title">
+                        <i class="bi bi-map-fill"></i>
+                        <span th:text="${coleccion.titulo}">Título de la Colección</span>
+                    </h1>
                     <p class="collection-description" th:text="${coleccion.descripcion}">Descripción de la colección</p>
                     <div class="d-flex gap-3 align-items-center">
                         <span class="badge badge-categoria">
                             <i class="bi bi-collection"></i> Coleccion
                         </span>
                         <span class="text-muted">
-                            <i class="bi bi-pin-map"></i> 
+                            <i class="bi bi-geo-alt-fill"></i> 
                             <span th:text="${coleccion.cantHechos} + ' hechos'">0 hechos</span>
                         </span>
                     </div>
@@ -198,7 +223,7 @@
         <!-- Sección de hechos -->
         <div class="hechos-section">
             <h2 class="section-title">
-                <i class="bi bi-pin-map-fill"></i>
+                <i class="bi bi-map-fill"></i>
                 Hechos de esta Coleccion
             </h2>
 
@@ -216,13 +241,13 @@
                                             <i class="bi bi-tag"></i>
                                             <span th:text="${hecho.categoria}">Categoria</span>
                                         </span>
-                                        <span class="hecho-meta-item" th:if="${hecho.fechaAcontecimiento != null}">
+                                        <span class="hecho-meta-item" th:if="${hecho.fecha_acontecimiento != null}">
                                             <i class="bi bi-calendar"></i>
-                                            <span th:text="${#temporals.format(hecho.fechaAcontecimiento, 'dd/MM/yyyy')}">Fecha</span>
+                                            <span th:text="${#temporals.format(hecho.fecha_acontecimiento, 'dd/MM/yyyy')}">Fecha</span>
                                         </span>
-                                        <span class="hecho-meta-item" th:if="${hecho.ubicacion != null}">
+                                        <span class="hecho-meta-item" th:if="${hecho.latitud != null and hecho.longitud != null}">
                                             <i class="bi bi-geo-alt"></i>
-                                            <span th:text="${hecho.ubicacion.latitud} + ', ' + ${hecho.ubicacion.longitud}">Ubicacion</span>
+                                            <span th:text="${hecho.latitud} + ', ' + ${hecho.longitud}">Ubicacion</span>
                                         </span>
                                     </div>
                                 </div>
